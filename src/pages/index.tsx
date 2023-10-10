@@ -1,9 +1,11 @@
 import * as React from "react"
 import * as S from "./styled"
 import type { HeadFC, PageProps } from "gatsby"
+import MainBanner from "../components/mainBanner";
 
 const IndexPage: React.FC<PageProps> = () => {
   const firstBackgroundRef = React.useRef<HTMLDivElement>(null);
+
 
   React.useEffect(() => {
     // 화면 크기가 변경될 때마다 FirstBackground 컴포넌트의 높이를 조절합니다.
@@ -26,9 +28,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <S.Wrapper>
-      <S.FirstBackground ref={firstBackgroundRef}>
-        <p>Hello</p>
-      </S.FirstBackground>
+      <MainBanner mainBannerRef={firstBackgroundRef} />
       <S.SecondBackground>
         <p>world</p>
       </S.SecondBackground>

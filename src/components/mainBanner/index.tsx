@@ -29,7 +29,9 @@ const MainBanner: React.FC<MainBannerProps> = ({ mainBannerRef }: MainBannerProp
   const [introduceText3, setIntroduceText3] = useState("");
   const [introduceSkillText, setIntroduceSkillText] = useState("");
   const [index, setIndex] = useState(0);
+  const [skillSelect, setSkillSelect] = useState(0);
   const [skillIndex, setSkillIndex] = useState(0);
+  const [isWriteSkill, setIsWriteSkill] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -53,16 +55,30 @@ const MainBanner: React.FC<MainBannerProps> = ({ mainBannerRef }: MainBannerProp
     return () => clearTimeout(timer);
   }, [index]);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     if (skillIndex === skills[0].length) {
-  //       setIntroduceSkillText((prevText) => prevText.slice(0, -1));
-  //       setSkillIndex((prevIndex) => prevIndex - 1);
-  //     }
-  //   }, 100); // 한 글자씩 추가하는 간격 (100ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (introduce3.length === introduceText3.length) {
+        if (!isWriteSkill && introduceSkillText.length > 0) {
+          setIntroduceSkillText((prevText) => prevText.slice(0, -1));
+          setSkillIndex((prevIndex) => prevIndex - 1);
+        } else if (!isWriteSkill && introduceSkillText.length === 0) {
+          setSkillSelect((prevSelect) => (prevSelect + 1) % skills.length);
+          setIsWriteSkill(true);
+        } else {
+          if (skillIndex < skills[skillSelect].length) {
+            setIntroduceSkillText((prevText) => prevText + skills[skillSelect][skillIndex]);
+            setSkillIndex((prevIndex) => prevIndex + 1);
+          } else {
+            setTimeout(() => {
+              setIsWriteSkill(false);
+            }, 1000);
+          }
+        }
+      }
+    }, 100); // 한 글자씩 추가하는 간격 (100ms)
 
-  //   return () => clearTimeout(timer);
-  // }, [skillIndex])
+    return () => clearTimeout(timer);
+  }, [introduceText3, skillIndex, skillSelect, skills, isWriteSkill]);
 
   return (
     <S.MainBannerWrapper ref={mainBannerRef}>

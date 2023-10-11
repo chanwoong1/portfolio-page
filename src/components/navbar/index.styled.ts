@@ -4,13 +4,39 @@ export const NavbarWrapper = styled.nav`
   width: 100%;
   height: 70px;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0vh;
   left: 0;
   z-index: 999;
   gap: 2rem;
+`;
+
+export const Hamburger = styled.img`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+`;
+
+export const LeftContents = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+  margin-left: 2rem;
+`;
+
+export const RightContents = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
 
   & > *:last-child {
     padding-right: 2rem;
@@ -31,16 +57,5 @@ export const NavbarWrapper = styled.nav`
     & > *:first-child {
       padding-right: 2rem;
     }
-  }
-`;
-
-export const Hamburger = styled.img`
-  display: none;
-
-  @media screen and (max-width: 768px) {
-    display: block;
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
   }
 `;

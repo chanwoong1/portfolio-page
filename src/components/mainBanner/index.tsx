@@ -81,7 +81,7 @@ const MainBanner: React.FC<MainBannerProps> = ({ mainBannerRef }: MainBannerProp
   }, [introduceText3, skillIndex, skillSelect, skills, isWriteSkill]);
 
   return (
-    <S.MainBannerWrapper ref={mainBannerRef}>
+    <S.MainBannerWrapper id="main-banner" ref={mainBannerRef}>
       <S.MainBannerTitle>
         <S.TypingText $typing={typing1}>{introduceText1}</S.TypingText>
         <br />

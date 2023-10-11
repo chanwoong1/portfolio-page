@@ -5,6 +5,7 @@ import MainBanner from "../components/mainBanner";
 import TechStack from "../components/techStack";
 import About from "../components/about";
 import Projects from "../components/projects";
+import Navbar from "../components/navbar";
 
 const IndexPage: React.FC<PageProps> = () => {
   const browserSizeRef = React.useRef<HTMLDivElement>(null);
@@ -32,6 +33,7 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <S.Wrapper>
       <MainBanner mainBannerRef={browserSizeRef} />
+      <Navbar />
       <About aboutRef={browserSizeRef} />
       <Projects projectsRef={browserSizeRef} />
       <TechStack techStackRef={browserSizeRef} />

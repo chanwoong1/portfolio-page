@@ -6,7 +6,7 @@ interface ProjectsProps {
 }
 
 const Projects: React.FC<ProjectsProps> = ({ projectsRef }: ProjectsProps) => {
-  return <S.ProjectWrapper ref={projectsRef}>
+  return <S.ProjectWrapper id="projects" ref={projectsRef}>
     <S.ProjectWrapper>PROJECTS</S.ProjectWrapper>
   </S.ProjectWrapper>;
 }

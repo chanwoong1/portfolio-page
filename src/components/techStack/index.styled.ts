@@ -13,5 +13,4 @@ export const TechStackWrapper = styled.div`
 export const TechStackTitle = styled.strong`
   font-size: 3rem;
   font-weight: 700;
-  margin-left: 2rem;
 `;

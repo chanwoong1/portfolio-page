@@ -12,6 +12,14 @@ export const MainBannerTitle = styled.strong`
   font-size: 3rem;
   font-weight: 700;
   margin-left: 2rem;
+
+  @media screen and (max-width: 1100px) {
+    font-size: 2.5rem;
+  }
+
+  @media screen and (max-width: 900px) {
+    font-size: 2rem;
+  }
 `
 
 const typing = keyframes`

@@ -11,5 +11,4 @@ export const AboutWrapper = styled.div`
 export const AboutTitle = styled.strong`
   font-size: 3rem;
   font-weight: 700;
-  margin-left: 2rem;
 `;

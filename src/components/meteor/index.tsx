@@ -16,6 +16,7 @@ const MeteorShower: React.FC<MeteorShowerProps> = ({
         <S.Meteor
           key={"meteor" + idx}
           $top={Math.floor(Math.random() * 400) - 100 + "vh"}
+          $time={Math.floor(Math.random() * 100) + "s"}
         />
       ))}
     </S.MeteorsContainer>

@@ -6,7 +6,7 @@ const meteorFall = keyframes`
     opacity: 0;
   }
   100% {
-    transform: translate(100vw, 100vh);
+    transform: translate(200vw, 200vh);
     opacity: 1;
   }
 `;
@@ -17,7 +17,7 @@ export const MeteorsContainer = styled.div`
   height: 100%;
 `;
 
-export const Meteor = styled.span<{ $top: string }>`
+export const Meteor = styled.span<{ $top: string; $time: string }>`
   position: absolute;
   top: ${(props) => props.$top};
   left: ${(props) => Math.floor(Math.random() * (100 - 0) - 20) + "vw"};
@@ -27,8 +27,7 @@ export const Meteor = styled.span<{ $top: string }>`
   background: linear-gradient(-45deg, #64748b, transparent);
   box-shadow: 0 0 0 1px #ffffff10;
   transform: rotate(-45deg);
-  animation: ${meteorFall} ${Math.floor(Math.random() * (10 - 2) + 2) + "s"}
-    linear infinite;
+  animation: ${meteorFall} ${(props) => props.$time} linear infinite;
   animation-delay: ${Math.random() * (0.8 - 0.2) + 0.2 + "s"};
 
   &::before {

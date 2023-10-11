@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./index.styled";
 import { graphql, useStaticQuery } from "gatsby";
+import { Link } from "react-scroll";
 
 interface MainBannerProps {
   mainBannerRef: React.RefObject<HTMLDivElement>;
@@ -113,6 +114,11 @@ const MainBanner: React.FC<MainBannerProps> = ({
         <S.TypingText
           $typing={typing2}
         >{`${introduceText2} ${introduceSkillText}${introduceText3}`}</S.TypingText>
+        <S.MainBannerLinker>
+          <Link to="about" smooth={true} duration={500} offset={-70}>
+            View my work&nbsp;&nbsp;{`\u2794`}
+          </Link>
+        </S.MainBannerLinker>
       </S.MainBannerTitle>
     </S.MainBannerWrapper>
   );

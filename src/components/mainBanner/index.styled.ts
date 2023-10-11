@@ -22,6 +22,19 @@ export const MainBannerTitle = styled.strong`
   }
 `;
 
+export const MainBannerLinker = styled.div`
+  display: flex;
+  width: 200px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  border: 3px solid #000000;
+  cursor: pointer;
+`;
+
 const typing = keyframes`
   from { width: 0 }
   to { width: 100% }

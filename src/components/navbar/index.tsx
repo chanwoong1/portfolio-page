@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import * as S from "./index.styled";
 import list from "images/list.svg";
-import logo from "static/logo.png";
+import close from "images/x-icon.svg";
+import logo from "static/logo-white.png";
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  innerWidth: number;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ innerWidth }: NavbarProps) => {
+  const [isListOpen, setIsListOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (innerWidth > 767) setIsListOpen(false);
+  }, [innerWidth]);
+
   return (
     <S.NavbarWrapper id="navbar">
       <S.LeftContents>
@@ -19,7 +30,24 @@ const Navbar: React.FC = () => {
         </Link>
       </S.LeftContents>
       <S.RightContents>
-        <S.Hamburger src={list} alt="list" />
+        <S.Hamburger
+          src={isListOpen ? close : list}
+          alt="list"
+          onClick={() => setIsListOpen(!isListOpen)}
+        />
+        {isListOpen && (
+          <S.ListContainer>
+            <Link to="about" smooth={true} duration={500} offset={-70}>
+              <p>ABOUT</p>
+            </Link>
+            <Link to="projects" smooth={true} duration={500}>
+              <p>PROJECTS</p>
+            </Link>
+            <Link to="tech-stack" smooth={true} duration={500}>
+              <p>TECH STACK</p>
+            </Link>
+          </S.ListContainer>
+        )}
         <Link to="about" smooth={true} duration={500} offset={-70}>
           <p>ABOUT</p>
         </Link>

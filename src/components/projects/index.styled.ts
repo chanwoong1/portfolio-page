@@ -6,6 +6,7 @@ export const ProjectWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+  color: #ffffff;
 `;
 
 export const ProjectTitle = styled.strong`

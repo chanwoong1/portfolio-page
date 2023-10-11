@@ -7,6 +7,7 @@ export const NavbarWrapper = styled.nav`
   justify-content: space-between;
   align-items: center;
   position: sticky;
+  color: #ffffff;
   top: 0vh;
   left: 0;
   z-index: 999;
@@ -68,5 +69,23 @@ export const RightContents = styled.div`
     & > *:first-child {
       padding-right: 2rem;
     }
+  }
+`;
+
+export const ListContainer = styled.div`
+  display: absolute;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+  background-color: red;
+
+  @media screen and (max-width: 768px) {
+    display: absolute;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    background-color: green;
   }
 `;

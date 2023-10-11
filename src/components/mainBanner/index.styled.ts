@@ -4,8 +4,8 @@ export const MainBannerWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: #f5f5f5;
   height: 100vh;
+  color: #ffffff;
 `;
 
 export const MainBannerTitle = styled.strong`
@@ -31,7 +31,7 @@ export const MainBannerLinker = styled.div`
   gap: 1rem;
   margin-top: 1rem;
   font-size: 1.2rem;
-  border: 3px solid #000000;
+  border: 3px solid #ffffff;
   cursor: pointer;
 `;
 

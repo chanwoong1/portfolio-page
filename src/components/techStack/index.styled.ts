@@ -6,8 +6,8 @@ export const TechStackWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: lightblue;
   height: 100vh;
+  color: #ffffff;
 `;
 
 export const TechStackTitle = styled.strong`

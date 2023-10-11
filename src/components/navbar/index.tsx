@@ -6,7 +6,7 @@ import logo from "static/logo.png";
 
 const Navbar: React.FC = () => {
   return (
-    <S.NavbarWrapper>
+    <S.NavbarWrapper id="navbar">
       <S.LeftContents>
         <Link
           to="main-banner"
@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
       </S.LeftContents>
       <S.RightContents>
         <S.Hamburger src={list} alt="list" />
-        <Link to="about" smooth={true} duration={500}>
+        <Link to="about" smooth={true} duration={500} offset={-70}>
           <p>ABOUT</p>
         </Link>
         <Link to="projects" smooth={true} duration={500}>

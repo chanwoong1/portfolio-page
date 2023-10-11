@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "./index.styled";
+import Navbar from "../navbar";
 
 interface AboutProps {
   aboutRef: React.RefObject<HTMLDivElement>;

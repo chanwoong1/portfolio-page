@@ -6,6 +6,7 @@ import TechStack from "../components/techStack";
 import About from "../components/about";
 import Projects from "../components/projects";
 import Navbar from "../components/navbar";
+import MeteorShower from "../components/meteor";
 import backgroundImage from "images/background.jpg";
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -34,6 +35,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <S.Wrapper $background={backgroundImage}>
+      <MeteorShower numMeteors={20} />
       <MainBanner mainBannerRef={browserSizeRef} />
       <Navbar innerWidth={innerWidth} />
       <About aboutRef={browserSizeRef} />

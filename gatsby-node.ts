@@ -18,6 +18,7 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ get
     resolve: {
       alias: {
         images: path.resolve(__dirname, 'src/images'),
+        static: path.resolve(__dirname, 'static'),
       },
     },
   });

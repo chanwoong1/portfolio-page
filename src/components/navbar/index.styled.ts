@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const NavbarWrapper = styled.nav`
   width: 100%;
@@ -27,9 +27,20 @@ export const Hamburger = styled.img`
 export const LeftContents = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
   cursor: pointer;
   margin-left: 2rem;
+`;
+
+export const LeftLinkStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: "1rem",
+  flexDirection: "row",
+};
+
+export const LogoImg = styled.img`
+  width: 32px;
+  height: 32px;
 `;
 
 export const RightContents = styled.div`

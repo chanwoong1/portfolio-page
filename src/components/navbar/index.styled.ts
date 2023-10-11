@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const NavbarWrapper = styled.div`
+export const NavbarWrapper = styled.nav`
   width: 100%;
-  height: 7vh;
+  height: 70px;
   display: flex;
   justify-content: right;
   align-items: center;

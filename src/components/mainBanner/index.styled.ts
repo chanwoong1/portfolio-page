@@ -9,7 +9,7 @@ export const MainBannerWrapper = styled.div`
 `;
 
 export const MainBannerTitle = styled.strong`
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-left: 2rem;
 `

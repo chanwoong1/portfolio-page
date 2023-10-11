@@ -6,7 +6,9 @@ interface MainBannerProps {
   mainBannerRef: React.RefObject<HTMLDivElement>;
 }
 
-const MainBanner: React.FC<MainBannerProps> = ({ mainBannerRef }: MainBannerProps) => {
+const MainBanner: React.FC<MainBannerProps> = ({
+  mainBannerRef,
+}: MainBannerProps) => {
   const data = useStaticQuery(graphql`
     query SiteMetadataQuery {
       site {
@@ -21,7 +23,8 @@ const MainBanner: React.FC<MainBannerProps> = ({ mainBannerRef }: MainBannerProp
       }
     }
   `);
-  const { introduce1, introduce2, introduce3, skills } = data.site.siteMetadata.mainBanner;
+  const { introduce1, introduce2, introduce3, skills } =
+    data.site.siteMetadata.mainBanner;
   const [typing1, setTyping1] = useState(true);
   const [typing2, setTyping2] = useState(false);
   const [introduceText1, setIntroduceText1] = useState("");
@@ -40,12 +43,32 @@ const MainBanner: React.FC<MainBannerProps> = ({ mainBannerRef }: MainBannerProp
       } else if (index < introduce1.length + introduce2.length) {
         setTyping1(false);
         setTyping2(true);
-        setIntroduceText2((prevText) => prevText + introduce2[index - introduce1.length]);
-      } else if (index < introduce1.length + introduce2.length + skills[0].length) {
-        setIntroduceSkillText((prevText) => prevText + skills[0][index - introduce1.length - introduce2.length]);
+        setIntroduceText2(
+          (prevText) => prevText + introduce2[index - introduce1.length]
+        );
+      } else if (
+        index <
+        introduce1.length + introduce2.length + skills[0].length
+      ) {
+        setIntroduceSkillText(
+          (prevText) =>
+            prevText + skills[0][index - introduce1.length - introduce2.length]
+        );
         setSkillIndex((prevIndex) => prevIndex + 1);
-      } else if (index < introduce1.length + introduce2.length + skills[0].length + introduce3.length) {
-        setIntroduceText3((prevText) => prevText + introduce3[index - introduce1.length - introduce2.length - skills[0].length]);
+      } else if (
+        index <
+        introduce1.length +
+          introduce2.length +
+          skills[0].length +
+          introduce3.length
+      ) {
+        setIntroduceText3(
+          (prevText) =>
+            prevText +
+            introduce3[
+              index - introduce1.length - introduce2.length - skills[0].length
+            ]
+        );
       } else {
         setTyping2(false);
       }
@@ -66,7 +89,9 @@ const MainBanner: React.FC<MainBannerProps> = ({ mainBannerRef }: MainBannerProp
           setIsWriteSkill(true);
         } else {
           if (skillIndex < skills[skillSelect].length) {
-            setIntroduceSkillText((prevText) => prevText + skills[skillSelect][skillIndex]);
+            setIntroduceSkillText(
+              (prevText) => prevText + skills[skillSelect][skillIndex]
+            );
             setSkillIndex((prevIndex) => prevIndex + 1);
           } else {
             setTimeout(() => {
@@ -85,7 +110,9 @@ const MainBanner: React.FC<MainBannerProps> = ({ mainBannerRef }: MainBannerProp
       <S.MainBannerTitle>
         <S.TypingText $typing={typing1}>{introduceText1}</S.TypingText>
         <br />
-        <S.TypingText $typing={typing2}>{`${introduceText2} ${introduceSkillText}${introduceText3}`}</S.TypingText>
+        <S.TypingText
+          $typing={typing2}
+        >{`${introduceText2} ${introduceSkillText}${introduceText3}`}</S.TypingText>
       </S.MainBannerTitle>
     </S.MainBannerWrapper>
   );

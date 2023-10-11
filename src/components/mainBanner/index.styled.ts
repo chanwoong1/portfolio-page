@@ -20,7 +20,7 @@ export const MainBannerTitle = styled.strong`
   @media screen and (max-width: 900px) {
     font-size: 2rem;
   }
-`
+`;
 
 const typing = keyframes`
   from { width: 0 }
@@ -39,6 +39,7 @@ export const TypingText = styled.span<{ $typing?: boolean }>`
   ${(props) =>
     props.$typing &&
     css`
-      animation: ${typing} 2s steps(40, end), ${blinkCaret} 0.75s step-end infinite;
+      animation: ${typing} 2s steps(40, end),
+        ${blinkCaret} 0.75s step-end infinite;
     `}
 `;

@@ -6,9 +6,11 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ aboutRef }: AboutProps) => {
-  return <S.AboutWrapper id="about" ref={aboutRef}>
-    <S.AboutTitle>ABOUT</S.AboutTitle>
-  </S.AboutWrapper>;
-}
+  return (
+    <S.AboutWrapper id="about" ref={aboutRef}>
+      <S.AboutTitle>ABOUT</S.AboutTitle>
+    </S.AboutWrapper>
+  );
+};
 
 export default About;

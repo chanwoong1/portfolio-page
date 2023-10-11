@@ -5,7 +5,7 @@ export const MainBannerWrapper = styled.div`
   display: flex;
   align-items: center;
   background-color: #f5f5f5;
-
+  height: 100vh;
 `;
 
 export const MainBannerTitle = styled.strong`

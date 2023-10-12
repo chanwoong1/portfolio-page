@@ -8,6 +8,7 @@ import Projects from "../components/projects";
 import Navbar from "../components/navbar";
 import MeteorShower from "../components/meteor";
 import backgroundImage from "images/background.jpg";
+import BackgroundSky from "../components/backgroundSky";
 
 const IndexPage: React.FC<PageProps> = () => {
   const browserSizeRef = React.useRef<HTMLDivElement>(null);
@@ -34,8 +35,9 @@ const IndexPage: React.FC<PageProps> = () => {
   }, []);
 
   return (
-    <S.Wrapper $background={backgroundImage}>
-      <MeteorShower numMeteors={20} />
+    <S.Wrapper>
+      <BackgroundSky />
+      <MeteorShower numMeteors={50} />
       <MainBanner mainBannerRef={browserSizeRef} />
       <Navbar innerWidth={innerWidth} />
       <About aboutRef={browserSizeRef} />

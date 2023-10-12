@@ -6,6 +6,7 @@ export const MainBannerWrapper = styled.div`
   align-items: center;
   height: 100vh;
   color: #ffffff;
+  z-index: 1;
 `;
 
 export const MainBannerTitle = styled.strong`
@@ -33,6 +34,7 @@ export const MainBannerLinker = styled.div`
   font-size: 1.2rem;
   border: 3px solid #ffffff;
   cursor: pointer;
+  z-index: 1;
 `;
 
 const typing = keyframes`

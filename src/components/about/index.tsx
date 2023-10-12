@@ -4,7 +4,6 @@ import { Network } from "vis-network";
 import about from "../../data/about";
 import star from "../../images/star_white.svg";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
@@ -13,7 +12,7 @@ interface AboutProps {
   refArray: React.RefObject<HTMLDivElement>[];
 }
 
-type ProjectType = {
+type AboutType = {
   title: string;
   description: string;
   image: string;
@@ -22,11 +21,11 @@ type ProjectType = {
 const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
   const visGraphRef = useRef<HTMLDivElement | null>(null);
   const [selectedProject, setSelectedProject] =
-    React.useState<ProjectType | null>(null);
+    React.useState<AboutType | null>(null);
 
-  const nodes = about.map((project, idx) => ({
+  const nodes = about.map((info, idx) => ({
     id: idx,
-    label: project.title,
+    label: info.title,
     x: useMemo(() => Math.random() * 1000, []),
     y: idx * 300,
   }));

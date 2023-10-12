@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./index.styled";
 
 const BackgroundSky: React.FC = () => {
-  const numberOfStars = Math.floor(Math.random() * 100) + 50;
+  const numberOfStars = Math.floor(Math.random() * 50) + 50;
   const stars = new Array(numberOfStars).fill(true);
   return (
     <S.BackgroundWrapper>

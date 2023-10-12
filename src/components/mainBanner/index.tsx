@@ -5,10 +5,12 @@ import { Link } from "react-scroll";
 
 interface MainBannerProps {
   mainBannerRef: React.RefObject<HTMLDivElement>;
+  innerWidth: number;
 }
 
 const MainBanner: React.FC<MainBannerProps> = ({
   mainBannerRef,
+  innerWidth,
 }: MainBannerProps) => {
   const data = useStaticQuery(graphql`
     query SiteMetadataQuery {
@@ -28,6 +30,8 @@ const MainBanner: React.FC<MainBannerProps> = ({
     data.site.siteMetadata.mainBanner;
   const [typing1, setTyping1] = useState(true);
   const [typing2, setTyping2] = useState(false);
+  const [typing3, setTyping3] = useState(false);
+  const [typing4, setTyping4] = useState(false);
   const [introduceText1, setIntroduceText1] = useState("");
   const [introduceText2, setIntroduceText2] = useState("");
   const [introduceText3, setIntroduceText3] = useState("");
@@ -51,6 +55,8 @@ const MainBanner: React.FC<MainBannerProps> = ({
         index <
         introduce1.length + introduce2.length + skills[0].length
       ) {
+        setTyping2(false);
+        setTyping3(true);
         setIntroduceSkillText(
           (prevText) =>
             prevText + skills[0][index - introduce1.length - introduce2.length]
@@ -63,6 +69,8 @@ const MainBanner: React.FC<MainBannerProps> = ({
           skills[0].length +
           introduce3.length
       ) {
+        setTyping3(false);
+        setTyping4(true);
         setIntroduceText3(
           (prevText) =>
             prevText +
@@ -71,7 +79,8 @@ const MainBanner: React.FC<MainBannerProps> = ({
             ]
         );
       } else {
-        setTyping2(false);
+        setTyping4(false);
+        setTyping3(true);
       }
       setIndex((prevIndex) => prevIndex + 1);
     }, 100); // 한 글자씩 추가하는 간격 (100ms)
@@ -111,9 +120,10 @@ const MainBanner: React.FC<MainBannerProps> = ({
       <S.MainBannerTitle>
         <S.TypingText $typing={typing1}>{introduceText1}</S.TypingText>
         <br />
-        <S.TypingText
-          $typing={typing2}
-        >{`${introduceText2} ${introduceSkillText}${introduceText3}`}</S.TypingText>
+        <S.TypingText $typing={typing2}>{`${introduceText2} `}</S.TypingText>
+        <S.TypingText $typing={typing3}>{introduceSkillText}</S.TypingText>
+        {innerWidth < 768 && <br />}
+        <S.TypingText $typing={typing4}>{introduceText3}</S.TypingText>
         <S.MainBannerLinker>
           <Link to="about" smooth={true} duration={500} offset={-70}>
             View my work&nbsp;&nbsp;{`\u2794`}

@@ -8,6 +8,7 @@ export const AboutWrapper = styled.div`
   color: #ffffff;
   width: 100%;
   height: 100vh;
+  z-index: 1;
 `;
 
 export const AboutTitle = styled.strong`

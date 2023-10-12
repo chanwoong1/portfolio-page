@@ -7,11 +7,14 @@ import About from "../components/about";
 import Projects from "../components/projects";
 import Navbar from "../components/navbar";
 import MeteorShower from "../components/meteor";
-import backgroundImage from "images/background.jpg";
 import BackgroundSky from "../components/backgroundSky";
+import projects from "../data/project";
 
 const IndexPage: React.FC<PageProps> = () => {
   const browserSizeRef = React.useRef<HTMLDivElement>(null);
+  const projectRefs: React.RefObject<HTMLDivElement>[] = projects.map(() =>
+    React.createRef()
+  );
   const [innerWidth, setInnerWidth] = React.useState<number>(window.innerWidth);
 
   React.useEffect(() => {
@@ -38,9 +41,9 @@ const IndexPage: React.FC<PageProps> = () => {
     <S.Wrapper>
       <BackgroundSky />
       <MeteorShower numMeteors={50} />
-      <MainBanner mainBannerRef={browserSizeRef} />
+      <MainBanner mainBannerRef={browserSizeRef} innerWidth={innerWidth} />
       <Navbar innerWidth={innerWidth} />
-      <About aboutRef={browserSizeRef} />
+      <About aboutRef={browserSizeRef} refArray={projectRefs} />
       <Projects projectsRef={browserSizeRef} />
       <TechStack techStackRef={browserSizeRef} />
     </S.Wrapper>

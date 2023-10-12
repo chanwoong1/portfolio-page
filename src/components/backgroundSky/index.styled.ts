@@ -6,7 +6,7 @@ export const BackgroundWrapper = styled.div`
   height: 400vh;
 `;
 
-export const Star = styled.div`
+export const Star = styled.div.attrs((props) => ({}))`
   position: absolute;
   width: 2px;
   height: 2px;

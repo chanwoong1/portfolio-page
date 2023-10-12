@@ -21,6 +21,10 @@ export const MainBannerTitle = styled.strong`
   @media screen and (max-width: 900px) {
     font-size: 2rem;
   }
+
+  @media screen and (max-width: 500px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const MainBannerLinker = styled.div`
@@ -32,7 +36,8 @@ export const MainBannerLinker = styled.div`
   gap: 1rem;
   margin-top: 1rem;
   font-size: 1.2rem;
-  border: 3px solid #ffffff;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
   cursor: pointer;
   z-index: 1;
 `;
@@ -44,13 +49,14 @@ const typing = keyframes`
 
 const blinkCaret = keyframes`
   from, to { border-color: transparent }
-  50% { border-color: #333 }
+  50% { border-color: #ffffff }
 `;
 
 export const TypingText = styled.span<{ $typing?: boolean }>`
   overflow: hidden;
   white-space: nowrap;
   border-right: 2px solid transparent;
+  width: 100%;
   ${(props) =>
     props.$typing &&
     css`

@@ -47,20 +47,26 @@ export const RightContents = styled.div<{
   $topValue: string;
 }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 0.7rem;
+  gap: 2rem;
   cursor: pointer;
   padding-right: 2rem;
 
+  & > *:first-child {
+    display: none;
+  }
+
   @media screen and (max-width: 768px) {
     display: flex;
+    flex-direction: column;
     position: ${(props) => (props.$topValue === "0vh" ? "fixed" : "static")};
     top: ${(props) => (props.$topValue === "0vh" ? "2rem" : "auto")};
     right: 0;
     height: 100%;
     padding-right: 1rem;
     align-items: center;
+    gap: 0.7rem;
 
     & > *:not(:first-child) {
       display: flex;

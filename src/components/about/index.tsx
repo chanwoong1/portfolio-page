@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo, memo } from "react";
 import * as S from "./index.styled";
 import { Network } from "vis-network";
 import about from "../../data/about";
@@ -27,7 +27,7 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
   const nodes = about.map((project, idx) => ({
     id: idx,
     label: project.title,
-    x: idx * 250,
+    x: useMemo(() => Math.random() * 1000, []),
     y: idx * 300,
   }));
 
@@ -88,7 +88,6 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
       network?.on("click", (event) => {
         const projectNo = event.nodes[0];
         setSelectedProject(about[projectNo]);
-        console.log(about[projectNo]);
       });
     }
   }, [visGraphRef, nodes, edges, refArray]);
@@ -122,4 +121,4 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
   );
 };
 
-export default About;
+export default memo(About);

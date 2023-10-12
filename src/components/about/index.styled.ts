@@ -14,6 +14,18 @@ export const AboutWrapper = styled.div`
 export const AboutTitle = styled.strong`
   font-size: 3rem;
   font-weight: 700;
+
+  @media screen and (max-width: 1100px) {
+    font-size: 2.5rem;
+  }
+
+  @media screen and (max-width: 900px) {
+    font-size: 2rem;
+  }
+
+  @media screen and (max-width: 500px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const ModalStyle = {

@@ -95,11 +95,11 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
 
   return (
     <S.AboutWrapper id="about" ref={aboutRef}>
-      {/* <S.AboutTitle>ABOUT</S.AboutTitle> */}
+      <S.AboutTitle>ABOUT</S.AboutTitle>
       <div
         ref={visGraphRef}
         style={{
-          height: `100%`,
+          height: `calc(100vh - 150px)`,
           width: `100%`,
         }}
       />

@@ -4,17 +4,44 @@ import * as S from "./index.styled";
 import list from "images/list.svg";
 import close from "images/x-icon.svg";
 import logo from "static/logo-white.png";
+import { Grid, Snackbar } from "@mui/material";
 
 interface NavbarProps {
   innerWidth: number;
+  isListOpen: boolean;
+  setIsListOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ innerWidth }: NavbarProps) => {
-  const [isListOpen, setIsListOpen] = useState<boolean>(false);
+const Navbar: React.FC<NavbarProps> = ({
+  innerWidth,
+  isListOpen,
+  setIsListOpen,
+}: NavbarProps) => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [topValue, setTopValue] = useState("100vh");
 
   useEffect(() => {
     if (innerWidth > 767) setIsListOpen(false);
-  }, [innerWidth]);
+
+    const handleScroll = () => {
+      const currentPosition = window.scrollY;
+      setScrollPosition(currentPosition);
+
+      // 계산된 top 값을 조절
+      const newTopValue = `${
+        100 - (currentPosition / window.innerHeight) * 100 > 0
+          ? 100 - (currentPosition / window.innerHeight) * 100
+          : 0
+      }vh`;
+      setTopValue(newTopValue);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [innerWidth, window.scrollY]);
 
   return (
     <S.NavbarWrapper id="navbar">
@@ -29,32 +56,35 @@ const Navbar: React.FC<NavbarProps> = ({ innerWidth }: NavbarProps) => {
           <p>정찬웅 포트폴리오</p>
         </Link>
       </S.LeftContents>
-      <S.RightContents>
+      <S.RightContents $isListOpen={isListOpen} $topValue={topValue}>
         <S.Hamburger
           src={isListOpen ? close : list}
           alt="list"
           onClick={() => setIsListOpen(!isListOpen)}
         />
-        {isListOpen && (
-          <S.ListContainer>
-            <Link to="about" smooth={true} duration={500} offset={-70}>
-              <p>ABOUT</p>
-            </Link>
-            <Link to="projects" smooth={true} duration={500}>
-              <p>PROJECTS</p>
-            </Link>
-            <Link to="tech-stack" smooth={true} duration={500}>
-              <p>TECH STACK</p>
-            </Link>
-          </S.ListContainer>
-        )}
-        <Link to="about" smooth={true} duration={500} offset={-70}>
+        <Link
+          to="about"
+          smooth={true}
+          duration={500}
+          offset={-70}
+          onClick={() => setIsListOpen(false)}
+        >
           <p>ABOUT</p>
         </Link>
-        <Link to="projects" smooth={true} duration={500}>
+        <Link
+          to="projects"
+          smooth={true}
+          duration={500}
+          onClick={() => setIsListOpen(false)}
+        >
           <p>PROJECTS</p>
         </Link>
-        <Link to="tech-stack" smooth={true} duration={500}>
+        <Link
+          to="tech-stack"
+          smooth={true}
+          duration={500}
+          onClick={() => setIsListOpen(false)}
+        >
           <p>TECH STACK</p>
         </Link>
       </S.RightContents>

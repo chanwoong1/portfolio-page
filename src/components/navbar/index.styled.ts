@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NavbarWrapper = styled.nav`
   width: 100%;
-  height: 70px;
+  height: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,12 +15,10 @@ export const NavbarWrapper = styled.nav`
 `;
 
 export const Hamburger = styled.img`
-  display: none;
+  display: flex;
 
   @media screen and (max-width: 768px) {
     display: block;
-    width: 2rem;
-    height: 2rem;
     cursor: pointer;
   }
 `;
@@ -44,48 +42,36 @@ export const LogoImg = styled.img`
   height: 32px;
 `;
 
-export const RightContents = styled.div`
+export const RightContents = styled.div<{
+  $isListOpen: boolean;
+  $topValue: string;
+}>`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 0.7rem;
   cursor: pointer;
-
-  & > *:last-child {
-    padding-right: 2rem;
-  }
+  padding-right: 2rem;
 
   @media screen and (max-width: 768px) {
-    flex-direction: row;
-    height: auto;
-    padding: 1rem;
-    gap: 1rem;
-    justify-content: flex-end;
+    display: flex;
+    position: ${(props) => (props.$topValue === "0vh" ? "fixed" : "static")};
+    top: ${(props) => (props.$topValue === "0vh" ? "2rem" : "auto")};
+    right: 0;
+    height: 100%;
+    padding-right: 1rem;
     align-items: center;
 
     & > *:not(:first-child) {
-      display: none;
+      display: flex;
+      position: relative;
+      right: ${(props) => (props.$isListOpen ? "0px" : "-120px")};
+      transition: right 0.5s ease;
     }
 
     & > *:first-child {
-      padding-right: 2rem;
+      display: flex;
+      margin-top: ${(props) => (props.$topValue === "0vh" ? "0" : "1.7rem")};
     }
-  }
-`;
-
-export const ListContainer = styled.div`
-  display: absolute;
-  align-items: center;
-  gap: 2rem;
-  cursor: pointer;
-  background-color: red;
-
-  @media screen and (max-width: 768px) {
-    display: absolute;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    right: 0;
-    background-color: green;
   }
 `;

@@ -1,6 +1,7 @@
-import * as React from "react";
+import React, { useState } from "react";
 import * as S from "./styled";
 import type { HeadFC, PageProps } from "gatsby";
+import Link from "react-scroll";
 import MainBanner from "../components/mainBanner";
 import TechStack from "../components/techStack";
 import About from "../components/about";
@@ -15,7 +16,8 @@ const IndexPage: React.FC<PageProps> = () => {
   const projectRefs: React.RefObject<HTMLDivElement>[] = projects.map(() =>
     React.createRef()
   );
-  const [innerWidth, setInnerWidth] = React.useState<number>(window.innerWidth);
+  const [innerWidth, setInnerWidth] = useState<number>(window.innerWidth);
+  const [isListOpen, setIsListOpen] = useState<boolean>(false);
 
   React.useEffect(() => {
     const resizeHandler = () => {
@@ -40,9 +42,13 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <S.Wrapper>
       <BackgroundSky />
-      <MeteorShower numMeteors={50} />
+      <MeteorShower numMeteors={30} />
       <MainBanner mainBannerRef={browserSizeRef} innerWidth={innerWidth} />
-      <Navbar innerWidth={innerWidth} />
+      <Navbar
+        innerWidth={innerWidth}
+        isListOpen={isListOpen}
+        setIsListOpen={setIsListOpen}
+      />
       <About aboutRef={browserSizeRef} refArray={projectRefs} />
       <Projects projectsRef={browserSizeRef} />
       <TechStack techStackRef={browserSizeRef} />

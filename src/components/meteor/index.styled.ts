@@ -7,7 +7,7 @@ const meteorFall = keyframes`
     opacity: 0;
   }
   100% {
-    transform: translate(200vw, 200vh);
+    transform: translate(100vw, 100vh);
     opacity: 1;
   }
 `;

@@ -2,14 +2,23 @@ import React, { useEffect, useRef } from "react";
 import * as S from "./index.styled";
 import { Network } from "vis-network";
 import about from "../../data/about";
+import star from "../../images/star_white.svg";
 
 interface AboutProps {
   aboutRef: React.RefObject<HTMLDivElement>;
   refArray: React.RefObject<HTMLDivElement>[];
 }
 
+type ProjectType = {
+  title: string;
+  description: string;
+  image: string;
+};
+
 const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
   const visGraphRef = useRef<HTMLDivElement | null>(null);
+  const [selectedProject, setSelectedProject] =
+    React.useState<ProjectType | null>(null);
 
   const nodes = about.map((project, idx) => ({
     id: idx,
@@ -34,18 +43,26 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
         {
           autoResize: true,
           nodes: {
-            shape: "dot",
-            size: 5,
+            shape: "image",
+            image: star,
+            size: 15,
             font: {
               size: 12,
               color: "white",
             },
             borderWidth: 1,
+            borderWidthSelected: 3,
             shadow: true,
             color: "white",
             fixed: {
               x: true,
               y: true,
+            },
+            chosen: {
+              node: false,
+              label: (values, id, selected, hovering) => {
+                values.size = 17;
+              },
             },
           },
           edges: {
@@ -65,11 +82,9 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
       );
 
       network?.on("click", (event) => {
-        console.log(`project-no.${event.nodes[0]}`, event);
         const projectNo = event.nodes[0];
-        if (refArray[projectNo] && refArray[projectNo].current) {
-          refArray[projectNo].current?.scrollIntoView({ behavior: "smooth" });
-        }
+        setSelectedProject(about[projectNo]);
+        console.log(about[projectNo]);
       });
     }
   }, [visGraphRef, nodes, edges, refArray]);
@@ -82,7 +97,6 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
         style={{
           height: `100%`,
           width: `100%`,
-          backgroundColor: "black",
         }}
       />
     </S.AboutWrapper>

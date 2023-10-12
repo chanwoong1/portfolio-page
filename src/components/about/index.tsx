@@ -3,6 +3,10 @@ import * as S from "./index.styled";
 import { Network } from "vis-network";
 import about from "../../data/about";
 import star from "../../images/star_white.svg";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 interface AboutProps {
   aboutRef: React.RefObject<HTMLDivElement>;
@@ -99,6 +103,21 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
           width: `100%`,
         }}
       />
+      <Modal
+        open={selectedProject !== null}
+        onClose={() => setSelectedProject(null)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={S.ModalStyle}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {selectedProject?.title}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            {selectedProject?.description}
+          </Typography>
+        </Box>
+      </Modal>
     </S.AboutWrapper>
   );
 };

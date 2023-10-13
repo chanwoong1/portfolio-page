@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import * as S from "./styled";
+import * as S from "../styles/styled";
 import type { HeadFC, PageProps } from "gatsby";
 import MainBanner from "../components/mainBanner";
-import TechStack from "../components/techStack";
 import About from "../components/about";
+import Blog from "../components/tistory";
+import Archives from "../components/archives";
 import Projects from "../components/projects";
 import Navbar from "../components/navbar";
 import MeteorShower from "../components/meteor";
@@ -52,7 +53,8 @@ const IndexPage: React.FC<PageProps> = () => {
         innerWidth={innerWidth}
         innerHeight={innerHeight}
       />
-      <TechStack techStackRef={browserSizeRef} />
+      <Blog blogRef={browserSizeRef} />
+      <Archives archivesRef={browserSizeRef} />
     </S.Wrapper>
   );
 };

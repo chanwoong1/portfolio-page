@@ -30,6 +30,12 @@ const config: GatsbyConfig = {
         icon: `./static/favicon.png`,
       },
     },
+    // {
+    //   resolve: "gatsby-plugin-page-creator",
+    //   options: {
+    //     path: `${__dirname}/src/pages`,
+    //   },
+    // },
     "gatsby-transformer-remark",
   ],
 };

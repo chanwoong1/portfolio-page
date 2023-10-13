@@ -9,7 +9,6 @@ import Modal from "@mui/material/Modal";
 
 interface AboutProps {
   aboutRef: React.RefObject<HTMLDivElement>;
-  refArray: React.RefObject<HTMLDivElement>[];
 }
 
 type AboutType = {
@@ -18,7 +17,7 @@ type AboutType = {
   image: string;
 };
 
-const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
+const About: React.FC<AboutProps> = ({ aboutRef }: AboutProps) => {
   const visGraphRef = useRef<HTMLDivElement | null>(null);
   const [selectedProject, setSelectedProject] =
     React.useState<AboutType | null>(null);
@@ -89,7 +88,7 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
         setSelectedProject(about[projectNo]);
       });
     }
-  }, [visGraphRef, nodes, edges, refArray]);
+  }, [visGraphRef, nodes, edges, []]);
 
   return (
     <S.AboutWrapper id="about" ref={aboutRef}>

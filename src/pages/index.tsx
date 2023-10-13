@@ -8,13 +8,9 @@ import Projects from "../components/projects";
 import Navbar from "../components/navbar";
 import MeteorShower from "../components/meteor";
 import BackgroundSky from "../components/backgroundSky";
-import projects from "../data/project";
 
 const IndexPage: React.FC<PageProps> = () => {
   const browserSizeRef = React.useRef<HTMLDivElement>(null);
-  const projectRefs: React.RefObject<HTMLDivElement>[] = projects.map(() =>
-    React.createRef()
-  );
   const [innerWidth, setInnerWidth] = useState<number>(window.innerWidth);
   const [innerHeight, setInnerHeight] = useState<number>(window.innerHeight);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
@@ -50,10 +46,9 @@ const IndexPage: React.FC<PageProps> = () => {
         isListOpen={isListOpen}
         setIsListOpen={setIsListOpen}
       />
-      <About aboutRef={browserSizeRef} refArray={projectRefs} />
+      <About aboutRef={browserSizeRef} />
       <Projects
         projectsRef={browserSizeRef}
-        refArray={projectRefs}
         innerWidth={innerWidth}
         innerHeight={innerHeight}
       />

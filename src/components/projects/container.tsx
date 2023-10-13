@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { Network } from "vis-network";
-import projects from "../../data/project";
+import {
+  projectDataOf42Seoul,
+  projectDataOfDataScience,
+} from "../../data/project";
 import star from "../../images/star_white.svg";
 
 interface ProjectsProps {
-  refArray: React.RefObject<HTMLDivElement>[];
   innerWidth: number;
   innerHeight: number;
   setSelectedProject: React.Dispatch<React.SetStateAction<ProjectType | null>>;
@@ -19,14 +21,13 @@ export type ProjectType = {
 };
 
 export const ProjectsOf42Seoul: React.FC<ProjectsProps> = ({
-  refArray,
   innerWidth,
   innerHeight,
   setSelectedProject,
 }: ProjectsProps) => {
   const visGraphRef = useRef<HTMLDivElement | null>(null);
 
-  const nodes = projects.map((project, idx) => ({
+  const nodes = projectDataOf42Seoul.map((project, idx) => ({
     id: idx,
     label: project.title,
     x: innerWidth < 350 ? innerWidth * project.x : 350 * project.x,
@@ -93,10 +94,10 @@ export const ProjectsOf42Seoul: React.FC<ProjectsProps> = ({
 
       network?.on("click", (event) => {
         const projectNo = event.nodes[0];
-        setSelectedProject(projects[projectNo]);
+        setSelectedProject(projectDataOf42Seoul[projectNo]);
       });
     }
-  }, [visGraphRef, nodes, edges, refArray]);
+  }, [visGraphRef, nodes, edges, []]);
 
   return (
     <div

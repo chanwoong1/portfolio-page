@@ -7,33 +7,33 @@ import { ProjectType, ProjectsOf42Seoul } from "./container";
 
 interface ProjectsProps {
   projectsRef: React.RefObject<HTMLDivElement>;
-  refArray: React.RefObject<HTMLDivElement>[];
   innerWidth: number;
   innerHeight: number;
 }
 
 const Projects: React.FC<ProjectsProps> = ({
   projectsRef,
-  refArray,
   innerWidth,
   innerHeight,
 }: ProjectsProps) => {
   const [selectedProject, setSelectedProject] =
     React.useState<ProjectType | null>(null);
 
-  useEffect(() => {
-    console.log(selectedProject);
-  }, [selectedProject]);
-
   return (
     <S.ProjectWrapper id="projects" ref={projectsRef}>
       <S.ProjectTitle>PROJECTS</S.ProjectTitle>
-      <ProjectsOf42Seoul
-        refArray={refArray}
-        innerHeight={innerHeight}
-        innerWidth={innerWidth}
-        setSelectedProject={setSelectedProject}
-      />
+      <S.VisNetworkContainer>
+        <ProjectsOf42Seoul
+          innerHeight={innerHeight}
+          innerWidth={innerWidth}
+          setSelectedProject={setSelectedProject}
+        />
+        <ProjectsOf42Seoul
+          innerHeight={innerHeight}
+          innerWidth={innerWidth}
+          setSelectedProject={setSelectedProject}
+        />
+      </S.VisNetworkContainer>
       <Modal
         open={selectedProject instanceof Object}
         onClose={() => setSelectedProject(null)}

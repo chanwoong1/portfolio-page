@@ -9,6 +9,10 @@ export const ProjectWrapper = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 1;
+
+  @media screen and (max-width: 768px) {
+    height: 160vh;
+  }
 `;
 
 export const ProjectTitle = styled.strong`
@@ -25,6 +29,21 @@ export const ProjectTitle = styled.strong`
 
   @media screen and (max-width: 500px) {
     font-size: 1.5rem;
+  }
+`;
+
+export const VisNetworkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  color: #ffffff;
+  width: 100%;
+  z-index: 1;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 

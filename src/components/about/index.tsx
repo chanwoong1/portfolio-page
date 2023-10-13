@@ -102,7 +102,7 @@ const About: React.FC<AboutProps> = ({ aboutRef, refArray }: AboutProps) => {
         }}
       />
       <Modal
-        open={selectedProject !== null}
+        open={selectedProject instanceof Object}
         onClose={() => setSelectedProject(null)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

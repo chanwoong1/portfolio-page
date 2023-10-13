@@ -7,6 +7,7 @@ interface RecentlyPostsProps {
   innerWidth: number;
   innerHeight: number;
   posts: BlogPostType[];
+  setSelectedPost: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 type BlogPostType = {
@@ -31,6 +32,7 @@ const RecentlyPosts: React.FC<RecentlyPostsProps> = ({
   innerWidth,
   innerHeight,
   posts,
+  setSelectedPost,
 }: RecentlyPostsProps) => {
   const visGraphRef = useRef<HTMLDivElement | null>(null);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -74,7 +76,7 @@ const RecentlyPosts: React.FC<RecentlyPostsProps> = ({
           },
           edges: {
             width: 1,
-            color: "rgba(255, 255, 255,  0.5)",
+            color: "rgba(255, 255, 255, 0.5)",
             shadow: true,
             smooth: false,
             chosen: false,
@@ -88,10 +90,12 @@ const RecentlyPosts: React.FC<RecentlyPostsProps> = ({
         }
       );
 
-      // network?.on("click", (event) => {
-      //   const projectNo = event.nodes[0];
-      //   setSelectedProject(projectDataOf42Seoul[projectNo]);
-      // });
+      network?.on("click", (event) => {
+        setSelectedPost(event.nodes[0]);
+        setHovered(null);
+        console.log(posts[event.nodes[0]]);
+      });
+
       network?.on("hoverNode", (event) => {
         const nodeId = event.node;
         setHovered(nodeId);
@@ -106,8 +110,6 @@ const RecentlyPosts: React.FC<RecentlyPostsProps> = ({
       });
     }
   }, [visGraphRef, nodes, [], []]);
-
-  console.log(innerHeight, innerWidth);
 
   return (
     <div

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import * as S from "./index.styled";
 import RecentlyPosts from "./container";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 interface BlogProps {
   blogRef: React.RefObject<HTMLDivElement>;
@@ -21,6 +24,7 @@ const Blog: React.FC<BlogProps> = ({
   const [blogData, setBlogData] = useState<any>(null);
   const [blogPosts, setBlogPosts] = useState<any>(null);
   const [blogRecentlyPosts, setBlogRecentlyPosts] = useState<any[]>([]);
+  const [selectedPost, setSelectedPost] = React.useState<number | null>(null);
 
   axiosReq
     .get(accessTokenByTistory)
@@ -59,8 +63,6 @@ const Blog: React.FC<BlogProps> = ({
       console.error("오류:", error);
     });
 
-  console.log(blogRecentlyPosts);
-
   return (
     <S.BlogWrapper id="blog" ref={blogRef}>
       <S.BlogTitle>Blog</S.BlogTitle>
@@ -84,7 +86,13 @@ const Blog: React.FC<BlogProps> = ({
                     <p>{blogData.statistics.comment}</p>
                   </S.BlogStatisticsItem>
                 </S.BlogStatistics>
-                <S.BlogLink href={blogData.url}>블로그 바로가기</S.BlogLink>
+                <S.BlogLink
+                  href={blogData.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  블로그 바로가기
+                </S.BlogLink>
               </S.BlogInfo>
             </S.BlogThumbnail>
             <S.BlogRecentlyPosts>
@@ -94,6 +102,7 @@ const Blog: React.FC<BlogProps> = ({
                   innerHeight={innerHeight}
                   innerWidth={innerWidth}
                   posts={blogRecentlyPosts}
+                  setSelectedPost={setSelectedPost}
                 />
               ) : (
                 <div
@@ -107,6 +116,40 @@ const Blog: React.FC<BlogProps> = ({
           </>
         )}
       </S.BlogContent>
+      {selectedPost !== null && (
+        <Modal
+          open={typeof selectedPost === "number"}
+          onClose={() => setSelectedPost(null)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={S.ModalStyle}>
+            <div>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {blogRecentlyPosts[selectedPost]?.title}
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                {blogRecentlyPosts[selectedPost]?.tags.tag.join(", ")}
+              </Typography>
+            </div>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {blogRecentlyPosts[selectedPost]?.content
+                .replace(/<[^>]*>/g, "")
+                .replace(/&nbsp;/g, " ")
+                .slice(0, 100) + "..."}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <S.BlogLink
+                href={blogRecentlyPosts[selectedPost]?.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                게시글 바로가기
+              </S.BlogLink>
+            </Typography>
+          </Box>
+        </Modal>
+      )}
     </S.BlogWrapper>
   );
 };

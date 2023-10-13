@@ -22,6 +22,8 @@ export const BlogContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 `;
 
 export const BlogThumbnail = styled.div`
@@ -90,6 +92,16 @@ export const BlogLink = styled.a`
 export const BlogStatisticsItem = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+`;
+
+export const BlogRecentlyPosts = styled.div`
+  width: 80%;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;

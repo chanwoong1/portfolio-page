@@ -61,7 +61,11 @@ const IndexPage: React.FC<PageProps> = () => {
         innerWidth={innerWidth}
         innerHeight={innerHeight}
       />
-      <Blog blogRef={browserSizeRef} />
+      <Blog
+        blogRef={browserSizeRef}
+        innerHeight={innerHeight}
+        innerWidth={innerWidth}
+      />
       <Archives archivesRef={browserSizeRef} />
     </S.Wrapper>
   );

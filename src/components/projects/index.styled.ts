@@ -9,6 +9,7 @@ export const ProjectWrapper = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 1;
+  gap: 3rem;
 
   @media screen and (max-width: 768px) {
     height: 160vh;
@@ -44,6 +45,30 @@ export const VisNetworkContainer = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
+  }
+`;
+
+export const VisNetworkEachContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const VisNetworkTitle = styled.strong`
+  font-size: 2.5rem;
+  font-weight: 400;
+
+  @media screen and (max-width: 1100px) {
+    font-size: 2rem;
+  }
+
+  @media screen and (max-width: 900px) {
+    font-size: 1.5rem;
+  }
+
+  @media screen and (max-width: 500px) {
+    font-size: 1rem;
   }
 `;
 

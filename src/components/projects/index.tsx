@@ -3,7 +3,11 @@ import * as S from "./index.styled";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { ProjectType, ProjectsOf42Seoul } from "./container";
+import {
+  ProjectType,
+  ProjectsOf42Seoul,
+  ProjectsOfDataScience,
+} from "./container";
 
 interface ProjectsProps {
   projectsRef: React.RefObject<HTMLDivElement>;
@@ -28,7 +32,7 @@ const Projects: React.FC<ProjectsProps> = ({
           innerWidth={innerWidth}
           setSelectedProject={setSelectedProject}
         />
-        <ProjectsOf42Seoul
+        <ProjectsOfDataScience
           innerHeight={innerHeight}
           innerWidth={innerWidth}
           setSelectedProject={setSelectedProject}

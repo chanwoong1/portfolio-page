@@ -5,13 +5,13 @@ interface BlogProps {
   blogRef: React.RefObject<HTMLDivElement>;
 }
 
-const axios = require("axios");
+const axiosReq = require("axios");
 
 const Blog: React.FC<BlogProps> = ({ blogRef }: BlogProps) => {
   const accessTokenByTistory = `https://www.tistory.com/apis/blog/info?access_token=${process.env.TISTORY_ACCESS_TOKEN}&output=json`;
   const [blogData, setBlogData] = useState<any>(null);
 
-  axios
+  axiosReq
     .get(accessTokenByTistory)
     .then((response: any) => {
       // 요청이 성공하면, response.data 또는 다른 방법으로 인증 코드를 처리합니다.
@@ -36,6 +36,17 @@ const Blog: React.FC<BlogProps> = ({ blogRef }: BlogProps) => {
               <S.BlogInfo>
                 <S.BlogName>{blogData.name}</S.BlogName>
                 <S.BlogDescription>{blogData.description}</S.BlogDescription>
+                <S.BlogStatistics>
+                  <S.BlogStatisticsItem>
+                    <strong>POSTS</strong>
+                    <p>{blogData.statistics.post}</p>
+                  </S.BlogStatisticsItem>
+                  <S.BlogStatisticsItem>
+                    <strong>COMMENTS</strong>
+                    <p>{blogData.statistics.comment}</p>
+                  </S.BlogStatisticsItem>
+                </S.BlogStatistics>
+                <S.BlogLink href={blogData.url}>블로그 바로가기</S.BlogLink>
               </S.BlogInfo>
             </S.BlogThumbnail>
           </>

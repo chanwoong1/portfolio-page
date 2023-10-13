@@ -59,6 +59,38 @@ export const BlogName = styled.strong`
 
 export const BlogDescription = styled.p`
   width: 100%;
-  height: 60%;
+  height: 20%;
   font-size: 1.5rem;
+`;
+
+export const BlogStatistics = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 5rem;
+  align-items: center;
+`;
+
+export const BlogLink = styled.a`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 0.3rem;
+  align-items: center;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  z-index: 1;
+`;
+
+export const BlogStatisticsItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 `;

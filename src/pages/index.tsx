@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./styled";
 import type { HeadFC, PageProps } from "gatsby";
-import Link from "react-scroll";
 import MainBanner from "../components/mainBanner";
 import TechStack from "../components/techStack";
 import About from "../components/about";
@@ -17,6 +16,7 @@ const IndexPage: React.FC<PageProps> = () => {
     React.createRef()
   );
   const [innerWidth, setInnerWidth] = useState<number>(window.innerWidth);
+  const [innerHeight, setInnerHeight] = useState<number>(window.innerHeight);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
 
   React.useEffect(() => {
@@ -25,6 +25,7 @@ const IndexPage: React.FC<PageProps> = () => {
         const windowHeight = window.innerHeight;
         const windowWidth = window.innerWidth;
         setInnerWidth(windowWidth);
+        setInnerHeight(windowHeight);
         browserSizeRef.current.style.height = `${windowHeight}px`;
       }
     };
@@ -50,7 +51,12 @@ const IndexPage: React.FC<PageProps> = () => {
         setIsListOpen={setIsListOpen}
       />
       <About aboutRef={browserSizeRef} refArray={projectRefs} />
-      <Projects projectsRef={browserSizeRef} />
+      <Projects
+        projectsRef={browserSizeRef}
+        refArray={projectRefs}
+        innerWidth={innerWidth}
+        innerHeight={innerHeight}
+      />
       <TechStack techStackRef={browserSizeRef} />
     </S.Wrapper>
   );

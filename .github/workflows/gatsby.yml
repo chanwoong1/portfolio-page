@@ -119,7 +119,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm ci
-          npm run build
+          gatsby build
           touch public/.nojekyll
       - name: Deploy 🚀
         # https://github.com/JamesIves/github-pages-deploy-action

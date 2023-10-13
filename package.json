@@ -10,11 +10,12 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
-    "build": "gatsby build --prefix-paths && cp -r public docs",
+    "build": "gatsby build --prefix-paths",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public -b deploy"
+    "deploy": "gatsby build && echo 'chanwoong.dev' > public/CNAME && gh-pages -d public -b deploy",
+    "deploy:prefixPath": "gatsby build --prefix-paths && gh-pages -d public -b deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

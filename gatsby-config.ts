@@ -1,5 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
-import siteMetaData from "./gatsby-site-meta-data"
+import siteMetaData from "./gatsby-site-meta-data";
 
 const config: GatsbyConfig = {
   siteMetadata: siteMetaData,
@@ -11,12 +11,12 @@ const config: GatsbyConfig = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-mdx",
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        "name": "pages",
-        "path": "./src/pages/",
+        name: "pages",
+        path: "./src/pages/",
       },
-      __key: "pages"
+      __key: "pages",
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -27,10 +27,11 @@ const config: GatsbyConfig = {
         background_color: `#f7f0eb`,
         theme_color: `#a2466c`,
         display: `standalone`,
-        icon: `./static/favicon.png`
+        icon: `./static/favicon.png`,
       },
     },
-  ]
+    "gatsby-transformer-remark",
+  ],
 };
 
 export default config;

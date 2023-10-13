@@ -10,15 +10,21 @@ import Navbar from "../components/navbar";
 import MeteorShower from "../components/meteor";
 import BackgroundSky from "../components/backgroundSky";
 
+const isBrowser = typeof window !== "undefined";
+
 const IndexPage: React.FC<PageProps> = () => {
   const browserSizeRef = React.useRef<HTMLDivElement>(null);
-  const [innerWidth, setInnerWidth] = useState<number>(window.innerWidth);
-  const [innerHeight, setInnerHeight] = useState<number>(window.innerHeight);
+  const [innerWidth, setInnerWidth] = useState<number>(
+    isBrowser ? window.innerWidth : 0
+  );
+  const [innerHeight, setInnerHeight] = useState<number>(
+    isBrowser ? window.innerHeight : 0
+  );
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
 
   React.useEffect(() => {
     const resizeHandler = () => {
-      if (browserSizeRef.current) {
+      if (isBrowser && browserSizeRef.current) {
         const windowHeight = window.innerHeight;
         const windowWidth = window.innerWidth;
         setInnerWidth(windowWidth);
@@ -42,11 +48,13 @@ const IndexPage: React.FC<PageProps> = () => {
       <BackgroundSky />
       <MeteorShower numMeteors={30} />
       <MainBanner mainBannerRef={browserSizeRef} innerWidth={innerWidth} />
-      <Navbar
-        innerWidth={innerWidth}
-        isListOpen={isListOpen}
-        setIsListOpen={setIsListOpen}
-      />
+      {isBrowser && (
+        <Navbar
+          innerWidth={innerWidth}
+          isListOpen={isListOpen}
+          setIsListOpen={setIsListOpen}
+        />
+      )}
       <About aboutRef={browserSizeRef} />
       <Projects
         projectsRef={browserSizeRef}

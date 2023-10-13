@@ -80,12 +80,20 @@ const Navbar: React.FC<NavbarProps> = ({
           <p>PROJECTS</p>
         </Link>
         <Link
-          to="tech-stack"
+          to="blog"
           smooth={true}
           duration={500}
           onClick={() => setIsListOpen(false)}
         >
-          <p>TECH STACK</p>
+          <p>BLOG</p>
+        </Link>
+        <Link
+          to="archives"
+          smooth={true}
+          duration={500}
+          onClick={() => setIsListOpen(false)}
+        >
+          <p>ARCHIVES</p>
         </Link>
       </S.RightContents>
     </S.NavbarWrapper>

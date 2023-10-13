@@ -8,6 +8,7 @@ export const NavbarWrapper = styled.nav`
   align-items: center;
   position: sticky;
   color: #ffffff;
+  background-color: #000000;
   top: 0vh;
   left: 0;
   z-index: 999;

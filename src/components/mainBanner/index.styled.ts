@@ -33,6 +33,7 @@ export const MainBannerLinker = styled.div`
   height: 40px;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   gap: 1rem;
   margin-top: 1rem;
   font-size: 1.2rem;

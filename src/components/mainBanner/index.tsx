@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./index.styled";
 import { graphql, useStaticQuery } from "gatsby";
-import { Link } from "react-scroll";
+import * as Scroll from "react-scroll";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 interface MainBannerProps {
   mainBannerRef: React.RefObject<HTMLDivElement>;
@@ -40,6 +41,18 @@ const MainBanner: React.FC<MainBannerProps> = ({
   const [skillSelect, setSkillSelect] = useState(0);
   const [skillIndex, setSkillIndex] = useState(0);
   const [isWriteSkill, setIsWriteSkill] = useState(false);
+
+  let scroll = Scroll.animateScroll;
+
+  const scrollAbout = () => {
+    const aboutSection = document.getElementById("navbar");
+    if (!aboutSection) return;
+    console.log(aboutSection.offsetTop);
+    scroll.scrollTo(aboutSection.offsetTop, {
+      duration: 500,
+      smooth: true,
+    });
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -124,10 +137,9 @@ const MainBanner: React.FC<MainBannerProps> = ({
         <S.TypingText $typing={typing3}>{introduceSkillText}</S.TypingText>
         {innerWidth < 768 && <br />}
         <S.TypingText $typing={typing4}>{introduceText3}</S.TypingText>
-        <S.MainBannerLinker>
-          <Link to="about" smooth={true} duration={500} offset={-70}>
-            View my work&nbsp;&nbsp;{`\u2794`}
-          </Link>
+        <S.MainBannerLinker onClick={() => scrollAbout()}>
+          <p>View my work</p>
+          <ArrowForwardIcon />
         </S.MainBannerLinker>
       </S.MainBannerTitle>
     </S.MainBannerWrapper>

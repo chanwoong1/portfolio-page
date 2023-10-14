@@ -4,7 +4,6 @@ import * as S from "./index.styled";
 import list from "images/list.svg";
 import close from "images/x-icon.svg";
 import logo from "static/logo-white.png";
-import { Grid, Snackbar } from "@mui/material";
 
 interface NavbarProps {
   innerWidth: number;
@@ -18,6 +17,10 @@ const Navbar: React.FC<NavbarProps> = ({
   setIsListOpen,
 }: NavbarProps) => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [aboutScrollPosition, setAboutScrollPosition] = useState(0);
+  const [projectScrollPosition, setProjectScrollPosition] = useState(0);
+  const [blogScrollPosition, setBlogScrollPosition] = useState(0);
+  const [archiveScrollPosition, setArchiveScrollPosition] = useState(0);
   const [topValue, setTopValue] = useState("100vh");
 
   useEffect(() => {
@@ -34,6 +37,34 @@ const Navbar: React.FC<NavbarProps> = ({
           : 0
       }vh`;
       setTopValue(newTopValue);
+
+      // About 영역의 스크롤 위치 계산
+      const aboutSection = document.getElementById("about");
+      if (aboutSection) {
+        const aboutSectionTop = aboutSection.getBoundingClientRect().top;
+        setAboutScrollPosition(currentPosition - aboutSectionTop);
+      }
+
+      // Project 영역의 스크롤 위치 계산
+      const projectSection = document.getElementById("projects");
+      if (projectSection) {
+        const projectSectionTop = projectSection.getBoundingClientRect().top;
+        setProjectScrollPosition(currentPosition - projectSectionTop);
+      }
+
+      // Blog 영역의 스크롤 위치 계산
+      const blogSection = document.getElementById("blog");
+      if (blogSection) {
+        const blogSectionTop = blogSection.getBoundingClientRect().top;
+        setBlogScrollPosition(currentPosition - blogSectionTop);
+      }
+
+      // Archive 영역의 스크롤 위치 계산
+      const archiveSection = document.getElementById("archives");
+      if (archiveSection) {
+        const archiveSectionTop = archiveSection.getBoundingClientRect().top;
+        setArchiveScrollPosition(currentPosition - archiveSectionTop);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -69,7 +100,14 @@ const Navbar: React.FC<NavbarProps> = ({
           offset={-70}
           onClick={() => setIsListOpen(false)}
         >
-          <p>ABOUT</p>
+          <S.RightLinkStyle
+            $highlight={
+              aboutScrollPosition >= scrollPosition &&
+              projectScrollPosition < scrollPosition
+            }
+          >
+            ABOUT
+          </S.RightLinkStyle>
         </Link>
         <Link
           to="projects"
@@ -77,7 +115,14 @@ const Navbar: React.FC<NavbarProps> = ({
           duration={500}
           onClick={() => setIsListOpen(false)}
         >
-          <p>PROJECTS</p>
+          <S.RightLinkStyle
+            $highlight={
+              projectScrollPosition >= scrollPosition &&
+              blogScrollPosition < scrollPosition
+            }
+          >
+            PROJECTS
+          </S.RightLinkStyle>
         </Link>
         <Link
           to="blog"
@@ -85,7 +130,14 @@ const Navbar: React.FC<NavbarProps> = ({
           duration={500}
           onClick={() => setIsListOpen(false)}
         >
-          <p>BLOG</p>
+          <S.RightLinkStyle
+            $highlight={
+              blogScrollPosition >= scrollPosition &&
+              archiveScrollPosition < scrollPosition
+            }
+          >
+            BLOG
+          </S.RightLinkStyle>
         </Link>
         <Link
           to="archives"
@@ -93,7 +145,14 @@ const Navbar: React.FC<NavbarProps> = ({
           duration={500}
           onClick={() => setIsListOpen(false)}
         >
-          <p>ARCHIVES</p>
+          <S.RightLinkStyle
+            $highlight={
+              archiveScrollPosition >= scrollPosition &&
+              archiveScrollPosition < scrollPosition + window.innerHeight
+            }
+          >
+            ARCHIVES
+          </S.RightLinkStyle>
         </Link>
       </S.RightContents>
     </S.NavbarWrapper>

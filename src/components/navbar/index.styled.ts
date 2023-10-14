@@ -50,7 +50,7 @@ export const RightContents = styled.div<{
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   cursor: pointer;
   padding-right: 2rem;
 
@@ -81,4 +81,14 @@ export const RightContents = styled.div<{
       margin-top: ${(props) => (props.$topValue === "0vh" ? "0" : "1.7rem")};
     }
   }
+`;
+
+export const RightLinkStyle = styled.div<{ $highlight: boolean }>`
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 1.2rem;
+  height: 3rem;
+  border-bottom: ${(props) =>
+    props.$highlight ? "2px solid #ffffff" : "2px solid #000000"};
 `;

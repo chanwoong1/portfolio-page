@@ -31,12 +31,17 @@ const config: GatsbyConfig = {
         icon: `./static/favicon.png`,
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-page-creator",
-    //   options: {
-    //     path: `${__dirname}/src/pages`,
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-gtag`,
+      options: {
+        // your google analytics tracking id
+        trackingId: `G-W9TR6T9B26`,
+        // Puts tracking script in the head instead of the body
+        head: false,
+        // enable ip anonymization
+        anonymize: true,
+      },
+    },
     "gatsby-transformer-remark",
   ],
 };

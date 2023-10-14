@@ -40,9 +40,21 @@ const RecentlyPosts: React.FC<RecentlyPostsProps> = ({
   const nodes = posts.map((project, idx) => ({
     id: idx,
     image: hovered === idx ? hoveredStar : star,
-    x: useMemo(() => innerWidth * 0.8 * Math.random(), []),
+    x: innerWidth * 0.8 * 0.1 * (idx + 1),
     y: useMemo(() => innerHeight * 0.4 * 0.6 * Math.random(), []),
   }));
+
+  const edges = [
+    { from: 0, to: 1 },
+    { from: 1, to: 2 },
+    { from: 2, to: 3 },
+    { from: 3, to: 4 },
+    { from: 4, to: 5 },
+    { from: 5, to: 6 },
+    { from: 6, to: 7 },
+    { from: 7, to: 8 },
+    { from: 8, to: 9 },
+  ];
 
   useEffect(() => {
     if (visGraphRef.current) {
@@ -50,6 +62,7 @@ const RecentlyPosts: React.FC<RecentlyPostsProps> = ({
         visGraphRef.current,
         {
           nodes,
+          edges,
         },
         {
           autoResize: true,

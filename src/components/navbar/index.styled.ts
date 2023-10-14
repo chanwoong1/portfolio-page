@@ -86,9 +86,18 @@ export const RightContents = styled.div<{
 export const RightLinkStyle = styled.div<{ $highlight: boolean }>`
   display: flex;
   align-items: center;
-  color: #ffffff;
-  font-size: 1.2rem;
+  color: ${(props) => (props.$highlight ? "#3c59e5" : "#ffffff")};
+  font-size: "1.2rem";
+  font-weight: 700;
   height: 3rem;
   border-bottom: ${(props) =>
-    props.$highlight ? "2px solid #ffffff" : "2px solid #000000"};
+    props.$highlight ? "2px solid #3c59e5" : "2px solid #000000"};
+
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    justify-content: center;
+    border-left: ${(props) =>
+      props.$highlight ? "2px solid #3c59e5" : "2px solid #00000000"};
+    border-bottom: none;
+  }
 `;

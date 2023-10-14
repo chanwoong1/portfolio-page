@@ -102,7 +102,7 @@ const Navbar: React.FC<NavbarProps> = ({
         >
           <S.RightLinkStyle
             $highlight={
-              aboutScrollPosition >= scrollPosition &&
+              aboutScrollPosition + 70 >= scrollPosition &&
               projectScrollPosition < scrollPosition
             }
           >

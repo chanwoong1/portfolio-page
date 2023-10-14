@@ -101,3 +101,19 @@ export const RightLinkStyle = styled.div<{ $highlight: boolean }>`
     border-bottom: none;
   }
 `;
+
+export const ScrollToTopButton = styled.div`
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #ffffff;
+  cursor: pointer;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+`;

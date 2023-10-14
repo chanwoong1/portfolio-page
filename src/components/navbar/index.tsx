@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-scroll";
+import * as Scroll from "react-scroll";
 import * as S from "./index.styled";
 import list from "images/list.svg";
 import close from "images/x-icon.svg";
 import logo from "static/logo-white.png";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 interface NavbarProps {
   innerWidth: number;
@@ -22,6 +23,16 @@ const Navbar: React.FC<NavbarProps> = ({
   const [blogScrollPosition, setBlogScrollPosition] = useState(0);
   const [archiveScrollPosition, setArchiveScrollPosition] = useState(0);
   const [topValue, setTopValue] = useState("100vh");
+  let scroll = Scroll.animateScroll;
+
+  const scrollAction = (to: string) => {
+    const section = document.getElementById(to);
+    if (!section) return;
+    scroll.scrollTo(section.offsetTop, {
+      duration: 500,
+      smooth: true,
+    });
+  };
 
   useEffect(() => {
     if (innerWidth > 767) setIsListOpen(false);
@@ -77,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <S.NavbarWrapper id="navbar">
       <S.LeftContents>
-        <Link
+        <Scroll.Link
           to="main-banner"
           smooth={true}
           duration={500}
@@ -85,75 +96,53 @@ const Navbar: React.FC<NavbarProps> = ({
         >
           <S.LogoImg src={logo} alt="logo" />
           <p>정찬웅 포트폴리오</p>
-        </Link>
+        </Scroll.Link>
       </S.LeftContents>
+      <S.ScrollToTopButton onClick={() => scroll.scrollToTop()}>
+        <ArrowUpwardIcon />
+      </S.ScrollToTopButton>
       <S.RightContents $isListOpen={isListOpen} $topValue={topValue}>
         <S.Hamburger
           src={isListOpen ? close : list}
           alt="list"
           onClick={() => setIsListOpen(!isListOpen)}
         />
-        <Link
-          to="about"
-          smooth={true}
-          duration={500}
-          offset={-70}
-          onClick={() => setIsListOpen(false)}
+        <S.RightLinkStyle
+          $highlight={
+            aboutScrollPosition + 70 >= scrollPosition &&
+            projectScrollPosition < scrollPosition
+          }
+          onClick={() => scrollAction("beforeAbout")}
         >
-          <S.RightLinkStyle
-            $highlight={
-              aboutScrollPosition + 70 >= scrollPosition &&
-              projectScrollPosition < scrollPosition
-            }
-          >
-            ABOUT
-          </S.RightLinkStyle>
-        </Link>
-        <Link
-          to="projects"
-          smooth={true}
-          duration={500}
-          onClick={() => setIsListOpen(false)}
+          ABOUT
+        </S.RightLinkStyle>
+        <S.RightLinkStyle
+          $highlight={
+            projectScrollPosition >= scrollPosition &&
+            blogScrollPosition < scrollPosition
+          }
+          onClick={() => scrollAction("projects")}
         >
-          <S.RightLinkStyle
-            $highlight={
-              projectScrollPosition >= scrollPosition &&
-              blogScrollPosition < scrollPosition
-            }
-          >
-            PROJECTS
-          </S.RightLinkStyle>
-        </Link>
-        <Link
-          to="blog"
-          smooth={true}
-          duration={500}
-          onClick={() => setIsListOpen(false)}
+          PROJECTS
+        </S.RightLinkStyle>
+        <S.RightLinkStyle
+          $highlight={
+            blogScrollPosition >= scrollPosition &&
+            archiveScrollPosition < scrollPosition
+          }
+          onClick={() => scrollAction("blog")}
         >
-          <S.RightLinkStyle
-            $highlight={
-              blogScrollPosition >= scrollPosition &&
-              archiveScrollPosition < scrollPosition
-            }
-          >
-            BLOG
-          </S.RightLinkStyle>
-        </Link>
-        <Link
-          to="archives"
-          smooth={true}
-          duration={500}
-          onClick={() => setIsListOpen(false)}
+          BLOG
+        </S.RightLinkStyle>
+        <S.RightLinkStyle
+          $highlight={
+            archiveScrollPosition >= scrollPosition &&
+            archiveScrollPosition < scrollPosition + window.innerHeight
+          }
+          onClick={() => scrollAction("archives")}
         >
-          <S.RightLinkStyle
-            $highlight={
-              archiveScrollPosition >= scrollPosition &&
-              archiveScrollPosition < scrollPosition + window.innerHeight
-            }
-          >
-            ARCHIVES
-          </S.RightLinkStyle>
-        </Link>
+          ARCHIVES
+        </S.RightLinkStyle>
       </S.RightContents>
     </S.NavbarWrapper>
   );

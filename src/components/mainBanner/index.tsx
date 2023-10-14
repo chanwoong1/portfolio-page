@@ -47,7 +47,6 @@ const MainBanner: React.FC<MainBannerProps> = ({
   const scrollAbout = () => {
     const aboutSection = document.getElementById("navbar");
     if (!aboutSection) return;
-    console.log(aboutSection.offsetTop);
     scroll.scrollTo(aboutSection.offsetTop, {
       duration: 500,
       smooth: true,
@@ -129,20 +128,23 @@ const MainBanner: React.FC<MainBannerProps> = ({
   }, [introduceText3, skillIndex, skillSelect, skills, isWriteSkill]);
 
   return (
-    <S.MainBannerWrapper id="main-banner" ref={mainBannerRef}>
-      <S.MainBannerTitle>
-        <S.TypingText $typing={typing1}>{introduceText1}</S.TypingText>
-        <br />
-        <S.TypingText $typing={typing2}>{`${introduceText2} `}</S.TypingText>
-        <S.TypingText $typing={typing3}>{introduceSkillText}</S.TypingText>
-        {innerWidth < 768 && <br />}
-        <S.TypingText $typing={typing4}>{introduceText3}</S.TypingText>
-        <S.MainBannerLinker onClick={() => scrollAbout()}>
-          <p>View my work</p>
-          <ArrowForwardIcon />
-        </S.MainBannerLinker>
-      </S.MainBannerTitle>
-    </S.MainBannerWrapper>
+    <>
+      <S.MainBannerWrapper id="main-banner" ref={mainBannerRef}>
+        <S.MainBannerTitle>
+          <S.TypingText $typing={typing1}>{introduceText1}</S.TypingText>
+          <br />
+          <S.TypingText $typing={typing2}>{`${introduceText2} `}</S.TypingText>
+          <S.TypingText $typing={typing3}>{introduceSkillText}</S.TypingText>
+          {innerWidth < 768 && <br />}
+          <S.TypingText $typing={typing4}>{introduceText3}</S.TypingText>
+          <S.MainBannerLinker onClick={() => scrollAbout()}>
+            <p>View my work</p>
+            <ArrowForwardIcon />
+          </S.MainBannerLinker>
+        </S.MainBannerTitle>
+      </S.MainBannerWrapper>
+      <div id="beforeAbout" style={{ width: "1px", height: "1px" }}></div>
+    </>
   );
 };
 

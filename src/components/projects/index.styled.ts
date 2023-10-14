@@ -12,7 +12,7 @@ export const ProjectWrapper = styled.div`
   gap: 3rem;
 
   @media screen and (max-width: 768px) {
-    height: 160vh;
+    height: 200vh;
   }
 `;
 

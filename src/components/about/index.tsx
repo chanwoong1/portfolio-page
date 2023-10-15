@@ -7,16 +7,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import hoveredStar from "../../images/star_yellow.svg";
+import { AboutType } from "src/data/about";
 
 interface AboutProps {
   aboutRef: React.RefObject<HTMLDivElement>;
 }
-
-type AboutType = {
-  title: string;
-  description: string;
-  image: string;
-};
 
 const About: React.FC<AboutProps> = ({ aboutRef }: AboutProps) => {
   const visGraphRef = useRef<HTMLDivElement | null>(null);
@@ -130,17 +125,42 @@ const About: React.FC<AboutProps> = ({ aboutRef }: AboutProps) => {
               style={{ width: "200px", height: "auto" }}
             />
           )}
-          <div>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+          <S.ModalContent>
+            <Typography id="modal-modal-title" variant="h4" component="h2">
               {selectedProject?.title}
             </Typography>
-            {selectedProject?.description !== "" &&
+            {selectedProject?.description &&
               selectedProject?.description.split("\n").map((line, idx) => (
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <Typography id="modal-modal-description" variant="body1">
                   {line}
                 </Typography>
               ))}
-          </div>
+            {selectedProject?.info &&
+              selectedProject?.info.map((info, idx) => (
+                <S.InfoItem>
+                  <info.icon style={{ width: "20px", height: "20px" }} />
+                  <Typography id="modal-modal-description" variant="body1">
+                    {info.description}
+                  </Typography>
+                </S.InfoItem>
+              ))}
+            <S.FavoriteContent>
+              {selectedProject?.favorite &&
+                selectedProject?.favorite.map((favorite, idx) => (
+                  <S.FavoriteItem>
+                    <favorite.icon style={{ width: "40%", height: "40%" }} />
+                    <Typography id="modal-modal-description" variant="h6">
+                      {favorite.title}
+                    </Typography>
+                    {favorite.description.split("\n").map((line, idx) => (
+                      <Typography id="modal-modal-description" variant="body2">
+                        {line}
+                      </Typography>
+                    ))}
+                  </S.FavoriteItem>
+                ))}
+            </S.FavoriteContent>
+          </S.ModalContent>
         </Box>
       </Modal>
     </S.AboutWrapper>

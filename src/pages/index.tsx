@@ -9,6 +9,7 @@ import Projects from "../components/projects";
 import Navbar from "../components/navbar";
 import MeteorShower from "../components/meteor";
 import BackgroundSky from "../components/backgroundSky";
+import Contact from "../components/contact";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -66,7 +67,8 @@ const IndexPage: React.FC<PageProps> = () => {
         innerHeight={innerHeight}
         innerWidth={innerWidth}
       />
-      <Archives archivesRef={browserSizeRef} />
+      <Contact contactRef={browserSizeRef} />
+      {/* <Archives archivesRef={browserSizeRef} /> */}
     </S.Wrapper>
   );
 };

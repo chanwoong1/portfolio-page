@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const [aboutScrollPosition, setAboutScrollPosition] = useState(0);
   const [projectScrollPosition, setProjectScrollPosition] = useState(0);
   const [blogScrollPosition, setBlogScrollPosition] = useState(0);
-  const [archiveScrollPosition, setArchiveScrollPosition] = useState(0);
+  const [contactScrollPosition, setContactScrollPosition] = useState(0);
   const [topValue, setTopValue] = useState("100vh");
   let scroll = Scroll.animateScroll;
 
@@ -71,10 +71,10 @@ const Navbar: React.FC<NavbarProps> = ({
       }
 
       // Archive 영역의 스크롤 위치 계산
-      const archiveSection = document.getElementById("archives");
-      if (archiveSection) {
-        const archiveSectionTop = archiveSection.getBoundingClientRect().top;
-        setArchiveScrollPosition(currentPosition - archiveSectionTop);
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        const contactSectionTop = contactSection.getBoundingClientRect().top;
+        setContactScrollPosition(currentPosition - contactSectionTop);
       }
     };
 
@@ -128,7 +128,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <S.RightLinkStyle
           $highlight={
             blogScrollPosition >= scrollPosition &&
-            archiveScrollPosition < scrollPosition
+            contactScrollPosition < scrollPosition
           }
           onClick={() => scrollAction("blog")}
         >
@@ -136,12 +136,12 @@ const Navbar: React.FC<NavbarProps> = ({
         </S.RightLinkStyle>
         <S.RightLinkStyle
           $highlight={
-            archiveScrollPosition >= scrollPosition &&
-            archiveScrollPosition < scrollPosition + window.innerHeight
+            contactScrollPosition >= scrollPosition &&
+            contactScrollPosition < scrollPosition + window.innerHeight
           }
-          onClick={() => scrollAction("archives")}
+          onClick={() => scrollAction("contact")}
         >
-          ARCHIVES
+          CONTACT
         </S.RightLinkStyle>
       </S.RightContents>
     </S.NavbarWrapper>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Network } from "vis-network";
 import {
   projectDataOf42Seoul,
@@ -6,6 +6,7 @@ import {
 } from "../../data/project";
 import * as S from "./index.styled";
 import star from "../../images/star_white.svg";
+import hoveredStar from "../../images/star_yellow.svg";
 
 interface ProjectsProps {
   innerWidth: number;
@@ -27,10 +28,12 @@ export const ProjectsOf42Seoul: React.FC<ProjectsProps> = ({
   setSelectedProject,
 }: ProjectsProps) => {
   const visGraphRef = useRef<HTMLDivElement | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   const nodes = projectDataOf42Seoul.map((project, idx) => ({
     id: idx,
     label: project.title,
+    image: hovered === idx ? hoveredStar : star,
     x: innerWidth < 350 ? innerWidth * project.x : 350 * project.x,
     y: innerHeight < 600 ? innerHeight * project.y : 600 * project.y,
   }));
@@ -57,7 +60,7 @@ export const ProjectsOf42Seoul: React.FC<ProjectsProps> = ({
           nodes: {
             shape: "image",
             image: star,
-            size: 15,
+            size: 30,
             font: {
               size: 15,
               color: "white",
@@ -92,6 +95,19 @@ export const ProjectsOf42Seoul: React.FC<ProjectsProps> = ({
           },
         }
       );
+
+      network?.on("blurNode", () => {
+        if (hovered !== null) {
+          setHovered(null);
+          network.redraw(); // 노드의 이미지 변경을 위해 네트워크 다시 그리기
+        }
+      });
+
+      network?.on("hoverNode", (event) => {
+        const nodeId = event.node;
+        setHovered(nodeId);
+        network.redraw(); // 노드의 이미지 변경을 위해 네트워크 다시 그리기
+      });
 
       network?.on("click", (event) => {
         const projectNo = event.nodes[0];
@@ -148,7 +164,7 @@ export const ProjectsOfDataScience: React.FC<ProjectsProps> = ({
           nodes: {
             shape: "image",
             image: star,
-            size: 15,
+            size: 30,
             font: {
               size: 15,
               color: "white",

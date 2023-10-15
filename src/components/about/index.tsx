@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo, memo } from "react";
+import React, { useEffect, useRef, useMemo, memo, useState } from "react";
 import * as S from "./index.styled";
 import { Network } from "vis-network";
 import about from "../../data/about";
@@ -6,6 +6,7 @@ import star from "../../images/star_white.svg";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import hoveredStar from "../../images/star_yellow.svg";
 
 interface AboutProps {
   aboutRef: React.RefObject<HTMLDivElement>;
@@ -19,12 +20,14 @@ type AboutType = {
 
 const About: React.FC<AboutProps> = ({ aboutRef }: AboutProps) => {
   const visGraphRef = useRef<HTMLDivElement | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] =
     React.useState<AboutType | null>(null);
 
   const nodes = about.map((info, idx) => ({
     id: idx,
     label: info.title,
+    image: hovered === idx ? hoveredStar : star,
     x: useMemo(() => Math.random() * 1000, []),
     y: idx * 300,
   }));
@@ -47,7 +50,7 @@ const About: React.FC<AboutProps> = ({ aboutRef }: AboutProps) => {
           nodes: {
             shape: "image",
             image: star,
-            size: 15,
+            size: 40,
             font: {
               size: 12,
               color: "white",
@@ -83,6 +86,19 @@ const About: React.FC<AboutProps> = ({ aboutRef }: AboutProps) => {
         }
       );
 
+      network?.on("blurNode", () => {
+        if (hovered !== null) {
+          setHovered(null);
+          network.redraw(); // 노드의 이미지 변경을 위해 네트워크 다시 그리기
+        }
+      });
+
+      network?.on("hoverNode", (event) => {
+        const nodeId = event.node;
+        setHovered(nodeId);
+        network.redraw(); // 노드의 이미지 변경을 위해 네트워크 다시 그리기
+      });
+
       network?.on("click", (event) => {
         const projectNo = event.nodes[0];
         setSelectedProject(about[projectNo]);
@@ -107,12 +123,24 @@ const About: React.FC<AboutProps> = ({ aboutRef }: AboutProps) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={S.ModalStyle}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {selectedProject?.title}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {selectedProject?.description}
-          </Typography>
+          {selectedProject?.image && (
+            <img
+              src={selectedProject?.image}
+              alt={selectedProject?.title}
+              style={{ width: "200px", height: "auto" }}
+            />
+          )}
+          <div>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              {selectedProject?.title}
+            </Typography>
+            {selectedProject?.description !== "" &&
+              selectedProject?.description.split("\n").map((line, idx) => (
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  {line}
+                </Typography>
+              ))}
+          </div>
         </Box>
       </Modal>
     </S.AboutWrapper>

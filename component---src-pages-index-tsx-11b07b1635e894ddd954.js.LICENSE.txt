@@ -1,6 +1,5 @@
-/**
- * @license React
- * react-server-dom-webpack.production.min.js
+/** @license React v16.13.1
+ * react-is.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *

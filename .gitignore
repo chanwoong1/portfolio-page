@@ -4,3 +4,6 @@ public
 src/gatsby-types.d.ts
 .env
 .env.*
+src/data/
+src/images/
+static/

@@ -17,9 +17,15 @@ interface ProjectsProps {
 export type ProjectType = {
   title: string;
   description: string;
-  image: string;
+  mainImage: string;
+  skillImages?: {
+    name: string;
+    image: string;
+  }[];
   x: number;
   y: number;
+  sourceLink?: string;
+  blogLink?: string;
 };
 
 export const ProjectsOf42Seoul: React.FC<ProjectsProps> = ({

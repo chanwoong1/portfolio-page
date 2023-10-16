@@ -73,14 +73,75 @@ export const VisNetworkTitle = styled.strong`
 `;
 
 export const ModalStyle = {
+  display: "flex",
   position: "absolute" as "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "65%",
   bgcolor: "background.paper",
   border: "2px solid #000",
   borderRadius: "10px",
   boxShadow: 24,
-  p: 4,
+  p: "1rem",
+  gap: "1rem",
 };
+
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+export const SkillsContent = styled.div`
+  display: flex;
+  height: 70px;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+`;
+
+export const SkillContainer = styled.div`
+  position: relative;
+  width: 70px;
+  height: 70px;
+  &:hover .overlay {
+    opacity: 1;
+  }
+`;
+
+export const SkillImage = styled.img`
+  display: block;
+  width: 70px;
+  height: 70px;
+`;
+
+export const SkillText = styled.div`
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+`;
+
+export const SkillImageOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  width: 70px;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #000000;
+`;
+
+export const LinkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+`;

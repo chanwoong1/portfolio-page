@@ -8,6 +8,7 @@ import {
   ProjectsOf42Seoul,
   ProjectsOfDataScience,
 } from "./container";
+import { Button } from "@mui/material";
 
 interface ProjectsProps {
   projectsRef: React.RefObject<HTMLDivElement>;
@@ -45,12 +46,75 @@ const Projects: React.FC<ProjectsProps> = ({
         aria-describedby="modal-modal-description"
       >
         <Box sx={S.ModalStyle}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {selectedProject?.title}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {selectedProject?.description}
-          </Typography>
+          {selectedProject?.mainImage && (
+            <img
+              src={selectedProject?.mainImage}
+              alt={selectedProject?.title}
+              style={{ width: "200px", height: "200px" }}
+            />
+          )}
+          <S.ModalContent>
+            <Typography id="modal-modal-title" variant="h4" component="h2">
+              {selectedProject?.title}
+            </Typography>
+            {selectedProject?.description &&
+              selectedProject?.description.split("\n").map((line, idx) => (
+                <Typography
+                  key={idx} // 고유한 key 속성 추가
+                  id="modal-modal-description"
+                  variant="body2"
+                >
+                  {line}
+                </Typography>
+              ))}
+            {selectedProject?.skillImages && (
+              <S.SkillsContent>
+                <Typography id="modal-modal-skills" variant="h5">
+                  SKILLS
+                </Typography>
+                {selectedProject?.skillImages.map((skill, idx) => (
+                  <S.SkillContainer>
+                    <S.SkillImage
+                      src={skill.image}
+                      alt={skill.name}
+                      key={skill.name}
+                    />
+                    <S.SkillImageOverlay className="overlay">
+                      <S.SkillText>{skill.name}</S.SkillText>
+                    </S.SkillImageOverlay>
+                  </S.SkillContainer>
+                ))}
+              </S.SkillsContent>
+            )}
+            <S.LinkContainer>
+              {selectedProject?.blogLink && (
+                <Button
+                  variant="contained"
+                  href={selectedProject?.blogLink}
+                  target="_blank"
+                  sx={{ width: "150px" }}
+                >
+                  BLOG
+                </Button>
+              )}
+              {selectedProject?.sourceLink && (
+                <Button
+                  variant="contained"
+                  href={selectedProject?.sourceLink}
+                  target="_blank"
+                  sx={{
+                    width: "150px",
+                    backgroundColor: "#000000",
+                    "&:hover": {
+                      backgroundColor: "rgba(0, 0, 0, 0.8)",
+                    },
+                  }}
+                >
+                  SOURCE CODE
+                </Button>
+              )}
+            </S.LinkContainer>
+          </S.ModalContent>
         </Box>
       </Modal>
     </S.ProjectWrapper>

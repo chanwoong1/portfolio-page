@@ -87,6 +87,22 @@ const Projects: React.FC<ProjectsProps> = ({
               </S.SkillsContent>
             )}
             <S.LinkContainer>
+              {selectedProject?.pdfLink && (
+                <Button
+                  variant="contained"
+                  href={selectedProject?.pdfLink}
+                  target="_blank"
+                  sx={{
+                    width: "150px",
+                    backgroundColor: "rgb(216, 130, 55)",
+                    "&:hover": {
+                      backgroundColor: "rgba(216, 130, 55, 0.8)",
+                    },
+                  }}
+                >
+                  PDF
+                </Button>
+              )}
               {selectedProject?.link && (
                 <Button
                   variant="contained"

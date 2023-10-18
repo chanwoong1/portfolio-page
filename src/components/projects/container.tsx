@@ -26,6 +26,7 @@ export type ProjectType = {
   y: number;
   sourceLink?: string;
   blogLink?: string;
+  link?: string;
 };
 
 export const ProjectsOf42Seoul: React.FC<ProjectsProps> = ({

@@ -68,7 +68,7 @@ const RecentlyPosts: React.FC<RecentlyPostsProps> = ({
           autoResize: true,
           nodes: {
             shape: "image",
-            size: 15,
+            size: 35,
             font: {
               size: 12,
               color: "white",

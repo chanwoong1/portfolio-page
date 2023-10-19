@@ -70,12 +70,16 @@ const Blog: React.FC<BlogProps> = ({
 
   return (
     <S.BlogWrapper id="blog" ref={blogRef}>
-      <S.BlogTitle>Blog</S.BlogTitle>
+      <S.BlogTitle>BLOG</S.BlogTitle>
       {blogData === null ? (
         <div>Loading...</div>
       ) : (
         <S.BlogContent>
-          <S.BlogThumbnail>
+          <S.BlogThumbnail
+            style={{
+              width: `${innerWidth > 1200 ? "900px" : `${innerWidth - 300}px`}`,
+            }}
+          >
             <S.BlogImage src={blogData.profileImageUrl} />
             <S.BlogInfo>
               <S.BlogName>{blogData.name}</S.BlogName>

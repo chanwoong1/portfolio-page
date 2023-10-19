@@ -27,8 +27,8 @@ export const BlogContent = styled.div`
 `;
 
 export const BlogThumbnail = styled.div`
-  width: 80%;
-  height: 30%;
+  width: 900px;
+  height: 300px;
   display: flex;
   flex-direction: row;
   justify-content: center;

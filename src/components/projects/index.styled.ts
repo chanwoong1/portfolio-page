@@ -95,7 +95,6 @@ export const ModalContent = styled.div`
 
 export const SkillsContent = styled.div`
   display: flex;
-  height: 70px;
   flex-direction: row;
   align-items: center;
   gap: 2rem;
@@ -104,7 +103,8 @@ export const SkillsContent = styled.div`
 export const SkillContainer = styled.div`
   position: relative;
   width: 70px;
-  height: 70px;
+  display: flex;
+  flex-wrap: wrap;
   &:hover .overlay {
     opacity: 1;
   }

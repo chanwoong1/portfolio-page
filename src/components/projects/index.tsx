@@ -68,10 +68,12 @@ const Projects: React.FC<ProjectsProps> = ({
                 </Typography>
               ))}
             {selectedProject?.skillImages && (
+              <Typography id="modal-modal-skills" variant="h5">
+                SKILLS
+              </Typography>
+            )}
+            {selectedProject?.skillImages && (
               <S.SkillsContent>
-                <Typography id="modal-modal-skills" variant="h5">
-                  SKILLS
-                </Typography>
                 {selectedProject?.skillImages.map((skill, idx) => (
                   <S.SkillContainer>
                     <S.SkillImage

@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import * as S from "./index.styled";
 import emailjs from "emailjs-com";
-import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import ContactView from "./view";
 
 interface ContactProps {
   contactRef: React.RefObject<HTMLDivElement>;
@@ -82,68 +77,15 @@ const Contact: React.FC<ContactProps> = ({ contactRef }: ContactProps) => {
       });
   };
 
-  const inputFields = [
-    { id: "email", name: "email", placeholder: "Email" },
-    { id: "name", name: "name", placeholder: "Name" },
-    { id: "title", name: "title", placeholder: "Title" },
-  ];
   return (
-    <S.Wrapper id="contact" ref={contactRef}>
-      <S.Title>CONTACT</S.Title>
-      <S.FormContainer>
-        {inputFields.map((field) => (
-          <S.InputUserInfo
-            key={field.id}
-            id={field.id}
-            type="text"
-            name={field.name}
-            value={formData[field.name]}
-            onChange={handleChange}
-            placeholder={field.placeholder}
-            autoComplete="off"
-          />
-        ))}
-        <S.InputText
-          id="message"
-          name="message"
-          placeholder="Message"
-          value={formData.message}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-        <Button
-          variant="contained"
-          endIcon={<SendIcon />}
-          onClick={() => sendEmail()}
-        >
-          Send
-        </Button>
-      </S.FormContainer>
-      <Modal
-        open={isEmailSent.isModalOpen}
-        onClose={() =>
-          setIsEmailSent({ isEmailSent: false, isModalOpen: false })
-        }
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={S.ModalStyle}>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {isEmailSent.isEmailSent
-              ? "이메일이 성공적으로 보내졌습니다."
-              : "이메일 보내기 실패. 다시 시도해주세요."}
-          </Typography>
-          <Button
-            variant="contained"
-            onClick={() =>
-              setIsEmailSent({ isEmailSent: false, isModalOpen: false })
-            }
-          >
-            확인
-          </Button>
-        </Box>
-      </Modal>
-    </S.Wrapper>
+    <ContactView
+      contactRef={contactRef}
+      isEmailSent={isEmailSent}
+      setIsEmailSent={setIsEmailSent}
+      formData={formData}
+      sendEmail={sendEmail}
+      handleChange={handleChange}
+    />
   );
 };
 

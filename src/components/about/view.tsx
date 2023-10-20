@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import * as S from "./index.styled";
 import { Typography } from "@mui/material";
-import { AboutType } from "src/data/about";
 import about from "../../data/about";
 import star from "../../images/star_white.svg";
 import hoveredStar from "../../images/star_yellow.svg";
@@ -24,8 +23,6 @@ const AboutView: React.FC<AboutLayoutProps> = ({
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
       const sectionHeight = windowHeight; // 각 섹션의 높이 (100vh)
-
-      console.log(scrollPosition, windowHeight, sectionHeight);
 
       // 현재 스크롤 위치에 따라 clicked 값을 계산
       const newClicked =

@@ -283,7 +283,7 @@ export const ProjectsMobileView: React.FC<ProjectsProps> = ({
             <Typography variant="h5" component="h2">
               {projectData[currentProject]?.title}
             </Typography>
-            <Typography variant="body2" component="h2">
+            <Typography variant="overline" component="h2">
               {projectData[currentProject]?.category}
             </Typography>
           </div>
@@ -330,7 +330,7 @@ export const ProjectsMobileView: React.FC<ProjectsProps> = ({
             )}
           </div>
           {projectData[currentProject]?.skillImages && (
-            <Typography id="modal-modal-skills" variant="h5">
+            <Typography id="modal-modal-skills" variant="h6">
               SKILLS
             </Typography>
           )}

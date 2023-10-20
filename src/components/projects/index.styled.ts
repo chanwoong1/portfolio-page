@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 
-export const ProjectWrapper = styled.div`
+export const ProjectWrapper = styled.div<{ $pnum?: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   color: #ffffff;
   width: 100%;
   height: 100vh;
@@ -13,8 +12,19 @@ export const ProjectWrapper = styled.div`
   gap: 3rem;
 
   @media screen and (max-width: 768px) {
-    height: 200vh;
+    height: ${(props) => (props.$pnum ? props.$pnum + 1 : 0) * 100}vh;
   }
+`;
+
+export const ProjectMobileWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  width: 100%;
+  height: 100vh;
 `;
 
 export const ProjectTitle = styled.strong`
@@ -154,4 +164,31 @@ export const LinkContainer = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 1rem;
+`;
+
+export const MobileContent = styled.div`
+  display: flex;
+  width: 80%;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 10px;
+  padding: 1rem;
+  gap: 0.5rem;
+  margin-top: 5%;
+`;
+
+export const StarsContent = styled.div`
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StarIcon = styled.img`
+  width: 30px;
+  height: 30px;
 `;

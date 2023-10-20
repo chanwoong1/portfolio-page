@@ -7,6 +7,7 @@ import {
 import * as S from "./index.styled";
 import star from "../../images/star_white.svg";
 import hoveredStar from "../../images/star_yellow.svg";
+import { Button } from "@mui/material";
 
 interface ProjectsProps {
   innerWidth: number;
@@ -241,5 +242,31 @@ export const ProjectsOfDataScience: React.FC<ProjectsProps> = ({
         }}
       />
     </S.VisNetworkEachContainer>
+  );
+};
+
+interface LinkButtonProps {
+  idx: number;
+  name: string;
+  link: string;
+  style?: object;
+}
+
+export const LinkButton: React.FC<LinkButtonProps> = ({
+  idx,
+  link,
+  name,
+  style,
+}: LinkButtonProps) => {
+  return (
+    <Button
+      key={`button-${name}-${idx}`}
+      variant="contained"
+      href={link}
+      target="_blank"
+      sx={style}
+    >
+      {name}
+    </Button>
   );
 };

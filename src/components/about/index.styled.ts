@@ -68,6 +68,6 @@ export const BetweenStars = styled.div`
 `;
 
 export const StarIcon = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;

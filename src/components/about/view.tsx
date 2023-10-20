@@ -52,7 +52,7 @@ const AboutView: React.FC<AboutLayoutProps> = ({
               <S.StarIcon
                 key={`star-${idx}`}
                 src={clicked === idx ? hoveredStar : star}
-                onClick={() => setClicked(idx)}
+                // onClick={() => setClicked(idx)}
               />
             </React.Fragment>
           ))}

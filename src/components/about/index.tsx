@@ -4,10 +4,22 @@ import AboutView from "./view";
 
 interface AboutProps {
   aboutRef: React.RefObject<HTMLDivElement>;
+  innerWidth: number;
+  innerHeight: number;
 }
 
-const About: React.FC<AboutProps> = ({ aboutRef }: AboutProps) => {
-  return <AboutView aboutRef={aboutRef} />;
+const About: React.FC<AboutProps> = ({
+  aboutRef,
+  innerWidth,
+  innerHeight,
+}: AboutProps) => {
+  return (
+    <AboutView
+      aboutRef={aboutRef}
+      innerWidth={innerWidth}
+      innerHeight={innerHeight}
+    />
+  );
 };
 
 export default memo(About);

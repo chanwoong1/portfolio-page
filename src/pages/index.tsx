@@ -56,7 +56,11 @@ const IndexPage: React.FC<PageProps> = () => {
           setIsListOpen={setIsListOpen}
         />
       )}
-      <About aboutRef={browserSizeRef} />
+      <About
+        aboutRef={browserSizeRef}
+        innerWidth={innerWidth}
+        innerHeight={innerHeight}
+      />
       <Projects
         projectsRef={browserSizeRef}
         innerWidth={innerWidth}

@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   height: 100vh;
   color: #ffffff;
+  gap: 2rem;
 `;
 
 export const Title = styled.strong`
@@ -24,24 +25,21 @@ export const FormContainer = styled.div`
   justify-content: center;
   border-radius: 20px;
   background-color: #ffffff;
+  gap: 2%;
 `;
 
 export const InputUserInfo = styled.input`
-  width: 80%;
+  width: 90%;
   height: 7%;
-  margin-bottom: 2%;
   border: 1px solid #000000;
   border-radius: 5px;
-  padding-left: 1%;
 `;
 
 export const InputText = styled.textarea`
-  width: 80%;
+  width: 90%;
   height: 50%;
-  margin-bottom: 2%;
   border: 1px solid #000000;
   border-radius: 5px;
-  padding-left: 1%;
 `;
 
 export const ModalStyle = {

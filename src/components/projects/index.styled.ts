@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const ProjectWrapper = styled.div`
   display: flex;
@@ -78,7 +79,7 @@ export const ModalStyle = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "65%",
+  width: "85%",
   bgcolor: "background.paper",
   border: "2px solid #000",
   borderRadius: "10px",
@@ -87,8 +88,17 @@ export const ModalStyle = {
   gap: "1rem",
 };
 
+export const ModalCloseIcon = styled(CloseIcon)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+  cursor: pointer;
+`;
+
 export const ModalContent = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 1rem;
 `;
@@ -96,6 +106,7 @@ export const ModalContent = styled.div`
 export const SkillsContent = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   gap: 2rem;
 `;
@@ -104,7 +115,6 @@ export const SkillContainer = styled.div`
   position: relative;
   width: 70px;
   display: flex;
-  flex-wrap: wrap;
   &:hover .overlay {
     opacity: 1;
   }

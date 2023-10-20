@@ -46,27 +46,50 @@ const Projects: React.FC<ProjectsProps> = ({
         aria-describedby="modal-modal-description"
       >
         <Box sx={S.ModalStyle}>
-          {selectedProject?.mainImage && (
-            <img
-              src={selectedProject?.mainImage}
-              alt={selectedProject?.title}
-              style={{ width: "200px", height: "200px" }}
-            />
-          )}
+          <S.ModalCloseIcon onClick={() => setSelectedProject(null)} />
           <S.ModalContent>
             <Typography id="modal-modal-title" variant="h4" component="h2">
               {selectedProject?.title}
             </Typography>
-            {selectedProject?.description &&
-              selectedProject?.description.split("\n").map((line, idx) => (
-                <Typography
-                  key={idx} // 고유한 key 속성 추가
-                  id="modal-modal-description"
-                  variant="body2"
-                >
-                  {line}
-                </Typography>
-              ))}
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <div
+                style={{
+                  width: "60%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                }}
+              >
+                {selectedProject?.description &&
+                  selectedProject?.description.split("\n").map((line, idx) => (
+                    <Typography
+                      key={idx} // 고유한 key 속성 추가
+                      id="modal-modal-description"
+                      variant="body2"
+                    >
+                      {line}
+                    </Typography>
+                  ))}
+              </div>
+              {selectedProject?.mainImage && (
+                <img
+                  src={selectedProject?.mainImage}
+                  alt={selectedProject?.title}
+                  style={{
+                    width: "35%",
+                    height: "auto",
+                  }}
+                />
+              )}
+            </div>
             {selectedProject?.skillImages && (
               <Typography id="modal-modal-skills" variant="h5">
                 SKILLS

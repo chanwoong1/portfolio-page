@@ -4,14 +4,25 @@ export const AboutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   color: #ffffff;
   width: 100%;
-  height: 100vh;
+  height: 400vh;
   z-index: 1;
 `;
 
+export const AboutContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  justify-content: center;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+`;
+
 export const AboutTitle = styled.strong`
+  display: flex;
+  justify-content: center;
   font-size: 3rem;
   font-weight: 700;
 
@@ -41,6 +52,10 @@ export const ModalStyle = {
   boxShadow: 24,
   p: "1rem",
   gap: "1rem",
+
+  "@media screen and (max-width: 1023px)": {
+    width: "85%",
+  },
 };
 
 export const ModalContent = styled.div`
@@ -69,4 +84,40 @@ export const FavoriteItem = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+`;
+
+export const StarsContent = styled.div`
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const BetweenStars = styled.div`
+  display: flex;
+  width: 1px;
+  height: 35%;
+  background-color: #ffffff;
+`;
+
+export const StarIcon = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
+export const MobileItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 80%;
+  padding-top: 10%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+export const MobileTitle = styled.strong`
+  font-size: 1.5rem;
+  font-weight: 700;
 `;
